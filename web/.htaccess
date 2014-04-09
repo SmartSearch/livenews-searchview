@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+
+    RewriteEngine On
+
+    # See ticket:49
+    # If the app is not in the root
+    # uncomment and adjust
+    # Also ensure that the Apache web
+    # server has the mod_rewrite module
+    # enabled
+    #RewriteBase livenews/searchview
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>

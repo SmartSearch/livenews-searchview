@@ -1,0 +1,289 @@
+{% extends 'layout.html.twig' %}
+
+{% import _self as fn %}
+
+{% block content %}
+<script  type="text/javascript">
+	var map;
+	function initialize(position,origen) {
+	var latlng = new google.maps.LatLng(43.469023,-3.785397);
+	var myOptions = {
+		zoom: 13,
+		center: latlng,
+		zoomControl: false,
+		disableDefaultUI: true,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	map = new google.maps.Map(document.getElementById(position), myOptions);
+	google.maps.event.addListener(map, 'click' , function(event) {
+	});
+
+	if(origen =="city"){
+		{{ fn.marcadoresMapa(ciudad) }}
+	}
+
+	if(origen =="sport"){
+		{{ fn.marcadoresMapa(deporte) }}
+	}	
+
+	if(origen =="event"){
+		{{ fn.marcadoresMapa(comercio) }}
+	}	
+
+	if(origen =="video"){
+		{{ fn.marcadoresMapa(trafico) }}
+	}	
+	if(origen =="pics"){
+		{{ fn.marcadoresMapa(cultura) }}
+	}
+}
+        $(document).ready(function() {
+              initialize("map_canvas","city");
+              $("a#iconSports").click(function ()
+                  {
+                      initialize("map_canvas2","sport"); 
+                      $("#iconCity_central").removeClass("active");
+                      $("#iconSports_central").addClass("active");
+                      $("#iconEvents_central").removeClass("active");
+                      $("#iconPic_central").removeClass("active");
+                      $("#iconVideo_central").removeClass("active");
+
+                  });
+				  
+              $("a#iconEvents").click(function ()
+                  {
+                      initialize("map_canvas3","event");
+ 
+                      $("#iconCity_central").removeClass("active");
+                      $("#iconSports_central").removeClass("active");
+                      $("#iconEvents_central").addClass("active");
+                      $("#iconPic_central").removeClass("active");
+					  $("#iconVideo_central").removeClass("active");
+                      
+                                    });
+              $("a#iconPics").click(function ()
+                  {
+                      initialize("map_canvas6","pics");
+                      $("#iconCity_central").removeClass("active");
+                      $("#iconSports_central").removeClass("active");
+                      $("#iconEvents_central").removeClass("active");
+                      $("#iconPic_central").addClass("active");
+					  $("#iconVideo_central").removeClass("active");
+               });
+			$("a#iconVideo").click(function ()
+                  {
+                      initialize("map_canvas5","video");
+ 
+                      $("#iconCity_central").removeClass("active");
+                      $("#iconSports_central").removeClass("active");
+                      $("#iconEvents_central").removeClass("active");
+                      $("#iconPic_central").removeClass("active");
+					  $("#iconVideo_central").addClass("active");
+              });
+
+		$("a#iconColours").click(
+			function () {
+				mediaPlayer.play();               
+			}
+		);			   
+	});
+</script>	  
+
+<!-- Omniture --->
+<div id="header"><img src="{{ app.request.basepath }}/img/logo.png"></div>
+<div id="wrapper">
+	<div id="sidebar">
+		<ul id="MenuSidebar">
+			<li class="icon_menuSidebar active"><a id="iconCity"><span></span>{{'city'|trans }}</a></li>
+			<li class="icon_menuSidebar"><a id="iconSports"><span></span>{{'sports'|trans }}</a></li>
+			<li class="icon_menuSidebar"><a id="iconColours"><span></span>{{'color'|trans }}</a></li>
+			<li class="icon_menuSidebar"><a id="iconEvents"><span></span>{{'shops'|trans }}</a></li>
+			<li class="icon_menuSidebar"><a id="iconPics"><span></span>{{'culture'|trans }}</a></li>
+			<li class="icon_menuSidebar"><a id="iconVideo"><span></span>{{'traffic'|trans }}</a></li>
+		</ul><!--fin menuSidebar-->
+	</div><!--fin sidebar-->
+	<div id="content">
+		<div id="playerContainer">
+			<div id="player_video_color" ></div>
+			<div id="iconCity_central" class="box-central_content">
+				<div class="central_content" id="map_canvas" style="height: 435px;">
+					<img src="{{ app.request.basepath }}/img/ejem.jpg">
+				</div><!--central_content-->
+			</div><!--iconCity_central-->
+
+			<div id="iconSports_central" class="box-central_content">
+				<div class="central_content" id="map_canvas2" style="height: 435px;"> <img src="{{ app.request.basepath }}/img/ejem.jpg"></div><!--central_content-->
+			</div><!--iconSports_central-->
+
+			<div id="iconEvents_central" class="box-central_content">
+				<div class="central_content" id="map_canvas3" style="height: 435px;"> <img src="{{ app.request.basepath }}/img/ejem.jpg"></div><!--central_content-->
+			</div><!--iconEvents_central-->
+
+			<div id="iconPic_central" class="box-central_content">
+				<div class="central_content" id="map_canvas6" style="height: 435px;"> <img src="{{ app.request.basepath }}/img/ejem.jpg"></div><!--central_content-->
+			</div><!--iconPic_central-->
+
+			<div id="iconVideo_central" class="box-central_content">
+				<div class="central_content" id="map_canvas5" style="height: 435px;"> <img src="{{ app.request.basepath }}/img/ejem.jpg"></div><!--central_content-->
+			</div><!--iconVideo_central-->			
+
+			<div id="iconColours_central" class="box-central_content">
+				<div class="central_content">
+					<div id="playerSimple"></div>
+<script>
+playerConfig = {
+
+    id: 'playerSimple_1',
+    player:{
+      container: "playerSimple",
+      width: '608',
+      height: '436',
+      referrer: 'http://radiole.com/'
+    },
+
+    media:{
+      type: 'video/mp4',
+      title: 'OrigenFL',
+      desc: '',
+      src: 'http://innovacion.prisadigital.com/media/Color_Analisis_Nov2012.mp4',
+      srcHTML5 : 'http://innovacion.prisadigital.com/media/Color_Analisis_Nov2012.mp4',
+      poster: '',
+      cdn: { provider:"akamai" }
+    },
+
+    ads:{
+      conf: 'http://radiole.pre.prisacom.int/psdmedia/media/simple/skins/radiole/confPubli.xml',
+      tags: 'SER_RADIO'
+    },
+
+    skin:{
+      id: 'carruseldep'
+    }
+  };
+
+  mediaPlayer = new psd.media.SimpleMediaPlayer( playerConfig );
+  mediaPlayer.init();
+
+</script>
+
+				</div><!--central_content-->
+			</div><!--fin iconColours-->
+		</div><!--fin playerContainer-->
+
+		<div id="box_buscador">
+			<div class="tit_search"><div class="flexa"></div>Search</div>
+			<input type="search" placeholder={{ 'search'|trans }} id="lupa" class="field">
+			<div id="mod_filter">
+				<a id="calendar">{{ 'calendar'|trans }}</a>
+				
+			</div><!--mod_filter-->
+		</div><!--box_buscador-->
+	</div><!--content-->
+
+	<div id="widgets">
+		{{ fn.modulo(ciudad, 'City of Santander', 'mod_iconCity') }}  
+		{{ fn.modulo(deporte, 'Sports in Santander', 'mod_iconSports') }}  
+		{{ fn.moduloDataDirect(colores, 'Colors in Santander', 'mod_iconColours') }}   
+		{{ fn.modulo(comercio, 'Shops in Santander', 'mod_iconEvents') }}  
+		{{ fn.modulo(cultura, 'Culture in Santander',  'mod_iconPics') }}  
+		{{ fn.modulo(trafico, 'Traffic in Santander',  'mod_iconVideo')}}
+	</div><!-- widgets -->
+</div>
+{% endblock %}	
+			  
+{% macro marcadoresMapa(content) %}
+    {% for elem in content %}
+        santanderEstePoint = new google.maps.Marker({
+                position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
+                title: '{{elem.locationName}}'
+        });
+        santanderEstePoint.setMap(map);
+        google.maps.event.addListener(santanderEstePoint, 'click', santanderEsteClick);
+    {% endfor %}
+        
+{% endmacro %}
+
+{% macro moduloDataDirect(content, title, id) %}
+    {% import _self as fn %}
+        
+    <div class="modulo_widget" id="{{ id }}">
+      <div class="tit_widget"><div class="flexa"></div>{{ title }}</div>
+      <div class="content_widget">
+        <ul class="jspPane">
+            {% for elem in content %}
+            <li>
+                <img  src="{{ elem.icono }}">
+                 <div class="txt_widget">
+                     <p class="autor">{{ elem.autor }}</p>
+                     <p>{{ elem.descripcion }}</p>
+                 </div>
+             </li>
+            {% endfor %}
+        </ul>
+      </div><!--content_widget-->
+    </div><!--mod_ticonColours-->    
+{% endmacro %}            
+    
+{% macro modulo(content, title, id) %}
+    {% import _self as fn %}
+        
+    <div class="modulo_widget" id="{{ id }}">
+      <div class="tit_widget"><div class="flexa"></div>{{ title }}</div>
+      <div class="content_widget">
+          {{ fn.elems(content) }}
+      </div><!--content_widget-->
+    </div><!--mod_ticonColours-->    
+{% endmacro %}    
+        
+{% macro elems(content) %}
+    <ul class="jspPane">
+        {% for elem in content %}
+
+         {% set fecha=elem.startTime| date('d-m-Y H:i:s') %}
+
+             <li>
+                 {% if elem.firstTrigger in ['totalCheckIns', 'crowd_density', 'traffic_score', 'music_score'] %}
+                     <img  src="{{ app.request.basepath }}/img/crowd.png">
+                 {% elseif elem.firstTrigger == 'topTweets' %}
+                     <img  src="{{ app.request.basepath }}/img/twitter.png">
+                 {% endif %}
+                 <div class="txt_widget">
+                     <p class="autor">
+                         {%- if elem.firstTrigger == 'totalCheckIns' -%}
+                         Social
+                         {%- elseif elem.firstTrigger in ['crowd_density', 'traffic_score', 'music_score'] -%}
+                         Sensor
+                         {%- elseif elem.firstTrigger == 'topTweets' -%}
+                         Twitter
+                         {%- endif -%}
+                         <span class="fecha">{{ fecha|date('d-m-Y H:i') }}</span>
+                     </p>
+                     <p>
+                         {%- if elem.firstTrigger == 'totalCheckIns' -%}
+                         Se observan personas en la {{ elem.locationName }}. Total checking {{ elem.totalCheck }}
+                         {%- elseif elem.firstTrigger == 'crowd_density' -%}
+                             {%- if elem.score <= 0.4 -%}
+                                 Se observan 
+                             {%- elseif elem.score <= 0.7 -%}
+                                 Gran afluencia de 
+                             {%- else -%}
+                                 Afluencia masiva de 
+                             {%- endif %} personas en la {{ elem.locationName }}. Crowd density {{ elem.score }}
+                         {%- elseif elem.firstTrigger == 'traffic_score' -%}
+                         Se observa tráfico alto de vehículos en los alrededores de {{ elem.locationName }}. Traffic score {{ elem.score }}
+                         {%- elseif elem.firstTrigger == 'topTweets' -%}
+                         {{ elem.tuitDescription }}  {{ fecha }}
+                         {%- elseif elem.firstTrigger == 'music_score' -%}
+                             {%- if elem.musicScoreObservation <= 0.4 -%}
+                                 Audio análisis indica probabilidad de evento musical en  {{ elem.locationName }}. Crowd density {{ elem.score }} Music score {{ elem.musicScoreObservation }}
+                             {%- elseif elem.score > 0.4 -%}
+                                 Audio análisis indica alta probabilidad de evento musical en  {{ elem.locationName }}. Crowd density {{ elem.score }} Music score {{ elem.musicScoreObservation }}
+                             {%- endif %} 
+                         {%- endif -%}                            
+                     </p>
+                 </div>
+             </li>
+        {% endfor %}
+    </ul>    
+{% endmacro %}
+    

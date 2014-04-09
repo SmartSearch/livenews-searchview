@@ -1,0 +1,145 @@
+/*
+ * Vodafone YU
+ * Copyright 2012 Prisa Digital
+ * Version 2.0
+ */
+
+/* Indice de contenido:
+ ==================================================
+ #Reset
+ #Fuentes
+ #Estructura
+ #Mediaquerys
+ */
+
+/* ============= #Reset & Basics ================================================== */
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+body {
+	line-height: 1;
+}
+
+audio, canvas, video {
+	display: inline-block;
+	display: inline;
+	zoom: 1;
+}
+audio:not([controls]) {
+	display: none;
+}
+li {
+	list-style: none
+}
+a {
+	text-decoration: none
+}
+a:focus, a:hover, a:active {
+	outline: 0;
+}
+a img, img, a:visited, a:focus, a:hover {
+	border: none
+}
+img {
+	max-width: 100%;
+	vertical-align: middle;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*---form---*/
+button, input, select, textarea {
+	margin: 0;
+	font-size: 100%;
+	vertical-align: middle;
+}
+button, input {
+	overflow: visible;
+	line-height: normal;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+	cursor: pointer;
+	-webkit-appearance: button;
+}
+input[type="search"] {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	-webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+}
+textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+
+
+input{background:#eee;
+	-webkit-border-radius: 5px;border-radius: 5px;
+	-webkit-box-shadow: inset 2px 2px 5px 0px #cccccc;box-shadow: inset 2px 2px 5px 0px #cccccc; 
+	color:#d6d6d6;
+	padding:5px 10px;
+}
+input{-webkit-box-shadow: none;box-shadow: none}
+
+/* ============= #Fuentes ================================================== */
+
+
+p {
+	font-family: Helvetica, Arial, sans-serif;
+	margin: 0 0 5px;
+	font-size: 13px;
+	line-height: 1.3em;
+	color: #ffffff;
+}
+p small, .small {
+	font-size: 11px;
+	color: #ffffff;
+	font-weight:normal
+}
+a {
+	font-family: Helvetica, Arial, sans-serif;
+	color: #bbb;
+	text-decoration: none;
+	-webkit-transition: color 0.3s ease-in;
+	-moz-transition: color 0.3s ease-in; 
+	-o-transition: color 0.3s ease-in; 
+	-ms-transition: color 0.3s ease-in; 
+	transition: color 0.3s ease-in; 
+}
+a:hover {
+	color: #fff;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-family: inherit;
+	font-weight: bold;
+	color: inherit;
+	font-family:Helvetica, Arial, sans-serif;
+}
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+	font-weight: normal;
+	color: #999999;
+}

@@ -1,0 +1,10 @@
+{% extends 'layout_ajax.html.twig' %}
+
+{% import 'data.html.twig' as fn %}
+
+
+{% block ajax %}
+    {{ fn.elems(search,   '',   '') }}  
+{% endblock %}
+
+

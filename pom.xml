@@ -1,0 +1,21 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>prisadigital.smart</groupId>
+        <artifactId>livenews.searchview</artifactId>
+        <name>SMART. Live news. Search View</name>
+        <version>1.0-SNAPSHOT</version>
+        <build>
+                <sourceDirectory>./src</sourceDirectory>
+                <testSourceDirectory>./tests</testSourceDirectory>
+        </build>
+        <properties>
+                <sonar.skippedModules>vendor/*,target/*</sonar.skippedModules>
+                <sonar.language>php</sonar.language>
+                <sonar.php.file.suffixes>php</sonar.php.file.suffixes>
+        </properties>
+        <organization>
+        	<name>PRISA Digital</name>
+        	<url>http://www.prisa.com</url>
+        </organization>
+        <url>http://www.smartfp7.eu/</url>
+</project>

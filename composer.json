@@ -1,0 +1,46 @@
+{
+    "name"        : "smart/livenews",
+    "type"        : "project",
+    "description" : "Live news. An example of an use case of the SMART search engine",
+    "keywords"    : ["smart", "smartfp7", "prisadigital", "livenews"],
+    "homepage"    : "http://www.smartfp7.eu/",
+    "license"     : "MIT",
+    "authors"     : [
+        {
+            "name"  : "Jorge Tomé Hernando",
+            "email" : "jtome@prisadigital.com"
+        }
+    ],
+    "require": {
+        "kriswallsmith/assetic" : "~1.1",
+        "leafo/lessphp"         : "~0.4.0",
+        "mheap/silex-assetic"   : "~1.0",
+        "monolog/monolog"       : "~1.6",
+        "silex/silex"           : "~1.1",
+        "symfony/config"        : "~2.3",
+        "symfony/console"       : "~2.3",
+        "symfony/finder"        : "~2.2",
+        "symfony/translation"   : "~2.3",
+        "symfony/twig-bridge"   : "~2.3",
+        "symfony/validator"     : "~2.3",
+        "symfony/yaml"          : "~2.3",
+        "twig/twig"             : "~1.10",
+        "silex/web-profiler"    : "~1.0.1",
+        "twitter/bootstrap"     : "2.3.2"
+    },
+    "require-dev": {
+        "symfony/browser-kit"   : "~2.3",
+        "symfony/css-selector"  : "~2.3",
+        "symfony/dom-crawler"   : "~2.3",
+        "phpunit/phpunit"       : "3.7.*"
+    },
+    "scripts": {
+        "post-install-cmd": "prisadigital\\Composer\\Script::install",
+        "post-update-cmd": "prisadigital\\Composer\\Script::install"
+    },
+    "autoload": {
+        "psr-0": {
+            "prisadigital": "src/"
+        }
+    }
+}
