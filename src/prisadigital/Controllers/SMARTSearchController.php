@@ -24,7 +24,7 @@ class SMARTSearchController {
         );
         
         
-       return $app['twig']->render('data.html.twig', $data);
+       return $app['twig']->render('index.html.twig', $data);
     }
     
     public function queryAction(Request $request, Application $app) {
