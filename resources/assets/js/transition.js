@@ -1,8 +1,17 @@
-/**
- * Vodafone YU
- * Copyright 2012 Prisa Digital
- * Version 2.0
- */
+/* 
+* SMART FP7 - Search engine for MultimediA enviRonment generated contenT
+* Webpage: http://smartfp7.eu
+*
+* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*
+* The Original Code is Copyright (c) 2012-2014 PRISA Digital
+* All Rights Reserved
+*
+* Contributor(s):
+*  PRISA Digital
+*/
 
 $(document).ready(function() {
 	

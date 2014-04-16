@@ -1,3 +1,18 @@
+/* 
+* SMART FP7 - Search engine for MultimediA enviRonment generated contenT
+* Webpage: http://smartfp7.eu
+*
+* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*
+* The Original Code is Copyright (c) 2012-2014 PRISA Digital
+* All Rights Reserved
+*
+* Contributor(s):
+*  PRISA Digital
+*/
+
 var preload = '<div id="preloader" syle="text-align:center;margin:0;"><img src="/assets/img/ajax-loader1.gif"></div>';
 var noresult = '<ul class="jspPane"><li>      <div class="txt_widget"> <p class="autor"> 0 Resultados </p> <p>Esta consulta no genera resultados </p>       </div>    </li></ul>';
 var activo = "";
