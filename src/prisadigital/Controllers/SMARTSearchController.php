@@ -31,7 +31,7 @@ class SMARTSearchController {
             'ciudad'    => $smart->search('crowd'),
             'deporte'   => $smart->search('sport'),
             'colores'   => $this->getFixDataColor(),
-            'comercio'  => $smart->search('commerce'),
+            'comercio'  => $smart->search('shop'),
             'cultura'   => $smart->search('music'),
             'trafico'   => $smart->search('traffic'),
         );

@@ -96,19 +96,22 @@ class Api {
     */
     public function search() {
 		$context = 'Api.search';
-		$this->logger->info($context.' Trying to execute a search using the SMART Search API');
+		$this->logger->info($context.
+		    ' Trying to execute a search using the SMART Search API');
         
 		$this->success = false;
         $query = http_build_query($this->getQueryParams());
         
         $completeURL = $this->url. $this->searchMethod. "?". $query;
-        $this->logger->info($context.' The search we are trying to execute is {completeURL}.', array("completeURL" => $completeURL));
+        $this->logger->info($context.
+            ' The search we are trying to execute is {completeURL}.', 
+            array("completeURL" => $completeURL));
         $response = $this->response = @file_get_contents($completeURL);
 
         if ($response !== false) {
             $data = @json_decode($response, true);
             if ($data !== false) {
-				$this->logger->info($context.' The search was successfull.');
+                $this->logger->info($context.' The search was successfull.');
                 $this->success = true;
             }
         }
