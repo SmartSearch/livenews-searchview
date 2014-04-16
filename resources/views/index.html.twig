@@ -89,7 +89,6 @@
 	});
 </script>	  
 
-<!-- Omniture --->
 <div id="header"><img src="{{ app.request.basepath }}/img/logo.png"></div>
 <div id="wrapper">
 	<div id="sidebar">
@@ -102,6 +101,7 @@
 			<li class="icon_menuSidebar"><a id="iconVideo"><span></span>{{'traffic'|trans }}</a></li>
 		</ul><!--fin menuSidebar-->
 	</div><!--fin sidebar-->
+
 	<div id="content">
 		<div id="playerContainer">
 			<div id="player_video_color" ></div>
@@ -174,8 +174,9 @@ playerConfig = {
 			<div class="tit_search"><div class="flexa"></div>Search</div>
 			<input type="search" placeholder={{ 'search'|trans }} id="lupa" class="field">
 			<div id="mod_filter">
+				<!-- See Issue #8
 				<a id="calendar">{{ 'calendar'|trans }}</a>
-				
+				-->
 			</div><!--mod_filter-->
 		</div><!--box_buscador-->
 	</div><!--content-->
