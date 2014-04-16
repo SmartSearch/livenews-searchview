@@ -22,7 +22,6 @@ $app->register(new UrlGeneratorServiceProvider());
 $app->register(new TranslationServiceProvider());
 $app['translator'] = $app->share($app->extend('translator', function($translator, $app) {
     $translator->addLoader('yaml', new YamlFileLoader());
-
     $translator->addResource('yaml', __DIR__.'/../resources/locales/en.yml', 'en');
     $translator->addResource('yaml', __DIR__.'/../resources/locales/es.yml', 'es');
 
@@ -30,9 +29,9 @@ $app['translator'] = $app->share($app->extend('translator', function($translator
 }));
 
 $app->register(new MonologServiceProvider(), array(
-	'monolog.logfile' => isset($app['monolog.logfile']) ? $app['monolog.logfile'] : __DIR__.'/../resources/log/app.log',
-	'monolog.name'    => isset($app['monolog.name'])    ? $app['monolog.name']    : 'app',
-    'monolog.level'   => 300 // = Logger::WARNING
+	'monolog.logfile' => isset($app['monolog.logfile']) ? $app['monolog.logfile'] : __DIR__.'/../resources/log/logfile.log',
+	'monolog.name'    => isset($app['monolog.name'])    ? $app['monolog.name']    : 'name',
+    'monolog.level'   => isset($app['monolog.level'])   ? $app['monolog.level']   : 300 // = Logger::WARNING
 ));
 
 $app->register(new TwigServiceProvider(), array(
@@ -43,8 +42,6 @@ $app->register(new TwigServiceProvider(), array(
     'twig.form.templates' => array('form_div_layout.html.twig', 'common/form_div_layout.html.twig'),
     'twig.path'           => array(__DIR__ . '/../resources/views')
 ));
-
-$app->register(new SMARTSearchServiceProvider());
 
 if ($app['debug'] && isset($app['cache.path'])) {
     $app->register(new ServiceControllerServiceProvider());
@@ -90,6 +87,8 @@ if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {
         })
     );
 
+	$app->register(new SMARTSearchServiceProvider(), array(
+		'smart.url' => isset($app['smart.url']) ? $app['smart.url'] : 'http://demos.terrier.org/v1/',
+	));
 }
-
 return $app;

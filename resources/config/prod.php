@@ -1,8 +1,8 @@
 <?php
 
 // Log
-$app['monolog.file'] = __DIR__.'/../resources/log/livenews.log';
-$app['monolog.name'] = 'livenews';
+$app['monolog.logfile'] = __DIR__.'/../log/searchview.log';
+$app['monolog.name']    = 'searchview';
 
 // Local
 $app['locale'] = 'en';
@@ -38,7 +38,6 @@ $app['assetic.input.path_to_js']        = array(
 );
 $app['assetic.output.path_to_js']       = 'js/scripts.js';
 
-$app['smart.options.url'] = 'http://demos.terrier.org/v1/search.json';
-$app['smart.options.query_news'] = 'santander';
-$app['smart.options.query_weather'] = 'crowd';
-
+// SMART Search configuration
+$app['smart.url'] = 'http://demos.terrier.org/v1/';
+// SMART Search configuration - END

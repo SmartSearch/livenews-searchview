@@ -1,32 +1,48 @@
 <?php
-
+/*
+* SMART FP7 - Search engine for MultimediA enviRonment generated contenT
+* Webpage: http://smartfp7.eu
+*
+* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*
+* The Original Code is Copyright (c) 2012-2014 PRISA Digital
+* All Rights Reserved
+*/
 namespace prisadigital\Controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class SMARTSearchController {
 
+	/*
+	 *
+	 * @param Request request
+	 * @param Application app
+	 */
     public function indexAction(Request $request, Application $app) {
         
-        $api = $app['smart'];
-        
+        $smart = $app['smart'];
         
         $data = array(
             'document'  => array('id' => 'city'),
-            'ciudad'    => $api->search('crowd'),
-            'deporte'   => $api->search('sport'),
+            'ciudad'    => $smart->search('crowd'),
+            'deporte'   => $smart->search('sport'),
             'colores'   => $this->getFixDataColor(),
-            'comercio'  => $api->search('commerce'),
-            'cultura'   => $api->search('music'),
-            'trafico'   => $api->search('traffic'),
+            'comercio'  => $smart->search('commerce'),
+            'cultura'   => $smart->search('music'),
+            'trafico'   => $smart->search('traffic'),
         );
-        
-        
        return $app['twig']->render('index.html.twig', $data);
     }
     
+	/*
+	 *
+	 * @param Request request
+	 * @param Application app
+	 */
     public function queryAction(Request $request, Application $app) {
         $query  = $request->query->get('query');
         $origen = $request->query->get('origen');
@@ -38,14 +54,17 @@ class SMARTSearchController {
         $lat = $request->query->get('latitud');
         $lon = $request->query->get('longitud');
         
-        $api = $app['smart'];
+        $smart = $app['smart'];
         
         $data = array(
-            'search'    => $api->search($query, $lat, $lon),
+            'search' => $smart->search($query, $lat, $lon),
         );
        return $app['twig']->render('query.html.twig', $data);
     }
     
+	/*
+	 *
+	 */
     private function getFixDataColor() {
         return array(
             array(
@@ -65,6 +84,4 @@ class SMARTSearchController {
             ),
         );
     }
-    
 }
-
