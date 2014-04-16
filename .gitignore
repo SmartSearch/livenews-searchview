@@ -1,5 +1,14 @@
-# Cache
+# Vagrant directory
+.vagrant
+
+# Cache directory
 resources/cache/*
 
-# Vendor
+# Log directory
+resources/log/*
+
+# Vendor directory
 vendor/*
+
+# Web assets
+web/assets/*
