@@ -117,10 +117,12 @@ class Api {
         }
 	
 	// Solving Issue #3 - @jesusMarevalo - 20140526 - Sort by startTime
-	foreach ($data['results'] as $key => $row) {
+	if(!empty($data['results'])){
+	    foreach ($data['results'] as $key => $row) {
 		$startTime[$key]  = $row['startTime'];
+	    }
+	    array_multisort($startTime, SORT_DESC, $data['results']);
 	}
-	array_multisort($startTime, SORT_DESC, $data['results']);
 	// Solving Issue #3
 	
 	if ($this->success) {
