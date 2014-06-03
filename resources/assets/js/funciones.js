@@ -208,57 +208,46 @@ function poligonos() {
 	});
 }
 
-$(document)
-		.ready(
-				function() {
-					$("#lupa")
-							.keypress(
-									function(event) {
-										if (event.keyCode == 13) {
-											if ($("li.active").length > 0) {
-												activo = $("li.active")[0].children[0].attributes[0].value;
-												$("li.active").removeClass(
-														"active");
-											}
-											$(".modulo_widget").removeClass(
-													"visible");
-											$("div.visible .content_widget")
-													.html(preload);
-											$("#mod_iconEvents").addClass(
-													"visible");
-											$("#mod_iconEvents .tit_widget")
-													.html(
-															divVacio
-																	+ "Result for : "
-																	+ $("#lupa")[0].value);
-											$
-													.ajax(
-															{
-																url : uri + "?query="
-																		+ $("#lupa")[0].value,
-																context : document.body,
-																timeout : 8000,
-																error : function(
-																		x, t, m) {
-																	if (t === "timeout") {
-																		$(
-																				"div.visible .content_widget")
-																				.html(
-																						noresult);
-																	}																}
-															})
-													.done(
-															function(data) {
-																$(
-																		"div.visible .content_widget")
-																		.html(
-																				data);
-                                                                                                                                            if ($("div.visible .content_widget ul li").length == 0) {
-                                                                                                                                                            $("div.visible .content_widget").html(noresult);
-                                                                                                                                            }
-                                                                                                                                                        
-															});
 
-										}
-									});
+$(document).ready(function() {
+	$("#lupa").keypress(function(event) {
+		if (event.keyCode == 13) {
+			if ($("li.active").length > 0) {
+				activo = $("li.active")[0].children[0].attributes[0].value;
+				$("li.active").removeClass(
+						"active");
+			}
+			$(".modulo_widget").removeClass("visible");
+			$("div.visible .content_widget").html(preload);
+			$("#mod_iconEvents").addClass("visible");
+			$("#mod_iconEvents .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value);
+			$
+				.ajax({
+					url : uri + "?query=" + $("#lupa")[0].value,
+					context : document.body,
+					timeout : 8000,
+					error : function(x, t, m) {
+						if (t === "timeout") {
+							$("div.visible .content_widget").html(noresult);
+						}
+					}
+				})
+				.done(function(data) {
+					$("div.visible .content_widget").html(data);
+                    if ($("div.visible .content_widget ul li").length == 0) {
+                        $("div.visible .content_widget").html(noresult);
+                    }
 				});
+		}
+	});
+
+	$('#sinceDate').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
+	$('#calendar').click(function(){
+		//$('#calendar').toggleClass('active');
+		$('#sinceDate').toggle();
+		if($('#sinceDate').css('display') == "none"){	
+			$('#sinceDate').val('');
+			$('#calendar').removeClass('active');
+		}
+	});
+});
