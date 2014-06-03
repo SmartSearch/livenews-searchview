@@ -181,8 +181,8 @@ body#city {
 
 #sinceDate{
 	margin: 10px;
-	width: 73%;
-	/*display: none;*/
+	width: 63%;
+	display: none;
 	color: black;
 }
 
