@@ -243,13 +243,10 @@ $(document).ready(function() {
 
 	$('#sinceDate').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 	$('#calendar').click(function(){
-		console.log('llamando calendar...');
 		$('#sinceDate').toggle();
-		console.log('after toggle');
 		if($('#sinceDate').css('display') == "none"){
 			$('#sinceDate').val('');
 			$('#calendar').removeClass('active');
-			console.log('on if');
 		}
 	});
 });
