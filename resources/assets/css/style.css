@@ -179,6 +179,13 @@ body#city {
 #filter.active{background-position: -149px 0px}
 #calendar.active{background-position: -264px 0px}
 
+#sinceDate{
+	margin: 10px;
+	width: 73%;
+	display: none;
+	color: black;
+}
+
 #mod_filter a.active{color:#fff}
 
 /*--widgets--*/
