@@ -217,13 +217,24 @@ $(document).ready(function() {
 				$("li.active").removeClass(
 						"active");
 			}
+
+			/** Solving Issue #5 - @jesusMarevalo - 20140604 - Define param 'since' */
+			if ($("#sinceDate")[0].value != ""){
+				exists_since = "&since=" + $("#sinceDate")[0].value;
+				exists_since_label = " since " + $("#sinceDate")[0].value;
+			}else{
+				exists_since = "";
+				exists_since_label = "";
+			}
+			/** Solving Issue #5 - @jesusMarevalo - 20140604 - Define param 'since' */ 
+
 			$(".modulo_widget").removeClass("visible");
 			$("div.visible .content_widget").html(preload);
 			$("#mod_iconEvents").addClass("visible");
-			$("#mod_iconEvents .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value);
+			$("#mod_iconEvents .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value + exists_since_label);
 			$
 				.ajax({
-					url : uri + "?query=" + $("#lupa")[0].value,
+					url : uri + "?query=" + $("#lupa")[0].value + exists_since,
 					context : document.body,
 					timeout : 8000,
 					error : function(x, t, m) {
@@ -233,15 +244,17 @@ $(document).ready(function() {
 					}
 				})
 				.done(function(data) {
+					// Solving Issue #5 - @jesusMarevalo - 20140604 - Refresh map on each search 	
+					initialize("map_canvas","search");
 					$("div.visible .content_widget").html(data);
-                    if ($("div.visible .content_widget ul li").length == 0) {
-                        $("div.visible .content_widget").html(noresult);
-                    }
+					if ($("div.visible .content_widget ul li").length == 0) {
+			                        $("div.visible .content_widget").html(noresult);
+					}
 				});
 		}
 	});
 
-	$('#sinceDate').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
+	$('#sinceDate').datepicker({dateFormat: 'yy-mm-dd', firstDay: 1});
 	$('#calendar').click(function(){
 		$('#sinceDate').toggle();
 		if($('#sinceDate').css('display') == "none"){
