@@ -221,7 +221,7 @@ $(document).ready(function() {
 			/** Solving Issue #5 - @jesusMarevalo - 20140604 - Define param 'since' */
 			if ($("#sinceDate")[0].value != ""){
 				exists_since = "&since=" + $("#sinceDate")[0].value;
-				exists_since_label = " since " + $("#sinceDate")[0].value;
+				exists_since_label = ", since " + $("#sinceDate")[0].value;
 			}else{
 				exists_since = "";
 				exists_since_label = "";
