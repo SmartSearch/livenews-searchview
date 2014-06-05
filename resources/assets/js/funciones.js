@@ -17,7 +17,11 @@ var preload = '<div id="preloader" syle="text-align:center;margin:0;"><img src="
 var noresult = '<ul class="jspPane"><li>      <div class="txt_widget"> <p class="autor"> 0 Resultados </p> <p>Esta consulta no genera resultados </p>       </div>    </li></ul>';
 var activo = "";
 var divVacio = '<div class="flexa"></div>';
-var uri = "api/v1";
+
+// Solving Issue #5 - @jesusMarevalo - 20140604 - update uri in order to do searchs
+//var uri = "api/v1";
+var uri = "index.php/api/v1";
+
 
 /**
  * @param coordenadas
