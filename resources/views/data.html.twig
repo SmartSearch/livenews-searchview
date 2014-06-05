@@ -1,0 +1,64 @@
+{% macro elems(content) %}
+    <ul class="jspPane">        
+        {% for elem in content %}
+
+         {% set fecha=elem.startTime| date('d-m-Y H:i:s') %}
+
+             <li>
+                 {% if elem.firstTrigger in ['totalCheckIns', 'crowd_density', 'traffic_score', 'music_score'] %}
+                     <img  src="{{ app.request.basepath }}/img/crowd.png">
+                 {% elseif elem.firstTrigger == 'topTweets' %}
+                     <img  src="{{ app.request.basepath }}/img/twitter.png">
+                 {% endif %}
+                 <div class="txt_widget">
+                     <p class="autor">
+                         {%- if elem.firstTrigger == 'totalCheckIns' -%}
+                         Social
+                         {%- elseif elem.firstTrigger in ['crowd_density', 'traffic_score', 'music_score'] -%}
+                         Sensor
+                         {%- elseif elem.firstTrigger == 'topTweets' -%}
+                         Twitter
+                         {%- endif -%}
+                         <span class="fecha">{{ fecha|date('d-m-Y H:i') }}</span>
+                     </p>
+                     <p>
+                         {%- if elem.firstTrigger == 'totalCheckIns' -%}
+                         Se observan personas en la {{ elem.locationName }}. Total checking {{ elem.totalCheck }}
+                         {%- elseif elem.firstTrigger == 'crowd_density' -%}
+                             {%- if elem.score <= 0.4 -%}
+                                 Se observan 
+                             {%- elseif elem.score <= 0.7 -%}
+                                 Gran afluencia de 
+                             {%- else -%}
+                                 Afluencia masiva de 
+                             {%- endif %} personas en la {{ elem.locationName }}. Crowd density {{ elem.score }}
+                         {%- elseif elem.firstTrigger == 'traffic_score' -%}
+                         Se observa tráfico alto de vehículos en los alrededores de {{ elem.locationName }}. Traffic score {{ elem.score }}
+                         {%- elseif elem.firstTrigger == 'topTweets' -%}
+                         {{ elem.tuitDescription }}  {#{ fecha }#}
+                         {%- elseif elem.firstTrigger == 'music_score' -%}
+                             {%- if elem.musicScoreObservation <= 0.4 -%}
+                                 Audio análisis indica probabilidad de evento musical en  {{ elem.locationName }}. Crowd density {{ elem.score }} Music score {{ elem.musicScoreObservation }}
+                             {%- elseif elem.score > 0.4 -%}
+                                 Audio análisis indica alta probabilidad de evento musical en  {{ elem.locationName }}. Crowd density {{ elem.score }} Music score {{ elem.musicScoreObservation }}
+                             {%- endif %} 
+                         {%- endif -%}                            
+                     </p>
+                 </div>
+             </li>
+
+             {# Localización de los puntos en el mapa #}
+             <script>
+                santanderEstePoint = new google.maps.Marker({
+                      position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
+                      title: '{{elem.locationName}}'
+                });
+                santanderEstePoint.setMap(map);
+                google.maps.event.addListener(santanderEstePoint, 'click', santanderEsteClick);
+              </script>
+             {# Localización de los puntos en el mapa #}
+        {% endfor %}
+    </ul>    
+
+
+{% endmacro %}
