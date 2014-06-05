@@ -10,9 +10,6 @@ $app->get('/',
 $app->get('/api/v1', 
 		'prisadigital\\Controllers\\SMARTSearchController::queryAction');
 
-$app->get('index_dev.php/api/v1', 
-		'prisadigital\\Controllers\\SMARTSearchController::queryAction');
-
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
         return;
