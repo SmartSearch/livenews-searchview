@@ -83,7 +83,10 @@
 
 		$("a#iconColours").click(
 			function () {
-				mediaPlayer.play();               
+				//mediaPlayer.play();
+        // Solving Issue #4 - @jesusMarevalo - 20140610 - Load an open source video player 
+        // Load an open source video player  -  http://html5media.info/ 
+        document.getElementById('video').play();               
 			}
 		);			   
 	});
@@ -130,7 +133,8 @@
 			<div id="iconColours_central" class="box-central_content">
 				<div class="central_content">
 					<div id="playerSimple"></div>
-<script>
+<!--script>
+/*
 playerConfig = {
 
     id: 'playerSimple_1',
@@ -163,8 +167,13 @@ playerConfig = {
 
   mediaPlayer = new psd.media.SimpleMediaPlayer( playerConfig );
   mediaPlayer.init();
+*/  
+</script-->
 
-</script>
+          <!-- Solving Issue #4 - @jesusMarevalo - 20140610 - Load an open source video player -->
+          <!-- Load an open source video player  -  http://html5media.info/ -->
+          <video id="video" src="http://innovacion.prisadigital.com/media/Color_Analisis_Nov2012.mp4" width="608" height="436" controls preload></video>
+
 
 				</div><!--central_content-->
 			</div><!--fin iconColours-->
