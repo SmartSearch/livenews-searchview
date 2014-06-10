@@ -115,10 +115,20 @@ class Api {
                 $this->success = true;
             }
         }
-		if ($this->success) {
-			return $data;
-		} else {
-			throw new Exception($context.' The search has failed');
-		}
+	
+	// Solving Issue #3 - @jesusMarevalo - 20140526 - Sort by startTime
+	if(!empty($data['results'])){
+	    foreach ($data['results'] as $key => $row) {
+		$startTime[$key]  = $row['startTime'];
+	    }
+	    array_multisort($startTime, SORT_DESC, $data['results']);
+	}
+	// Solving Issue #3
+	
+	if ($this->success) {
+		return $data;
+	} else {
+		throw new Exception($context.' The search has failed');
+	}
     }
 }

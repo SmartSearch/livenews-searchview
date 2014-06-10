@@ -22,6 +22,11 @@
 
 	<script src="{{ app.request.basepath }}/assets/js/scripts.js"></script>
 	<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+
+	<!-- Solving Issue #4 - @jesusMarevalo - 20140610 - Load an open source video player -->
+	<!-- Load an open source video player  -  http://html5media.info/ -->
+	<script src="//api.html5media.info/1.1.8/html5media.min.js"></script>
+
 </head>
 <body {% if document.id is defined %} id="{{ document.id}}" {% endif %} >
 	{% block content %} {% endblock %}
