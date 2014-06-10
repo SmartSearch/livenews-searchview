@@ -19,6 +19,7 @@ var activo = "";
 var divVacio = '<div class="flexa"></div>';
 var uri = "api/v1";
 
+
 /**
  * @param coordenadas
  */
@@ -208,57 +209,58 @@ function poligonos() {
 	});
 }
 
-$(document)
-		.ready(
-				function() {
-					$("#lupa")
-							.keypress(
-									function(event) {
-										if (event.keyCode == 13) {
-											if ($("li.active").length > 0) {
-												activo = $("li.active")[0].children[0].attributes[0].value;
-												$("li.active").removeClass(
-														"active");
-											}
-											$(".modulo_widget").removeClass(
-													"visible");
-											$("div.visible .content_widget")
-													.html(preload);
-											$("#mod_iconEvents").addClass(
-													"visible");
-											$("#mod_iconEvents .tit_widget")
-													.html(
-															divVacio
-																	+ "Result for : "
-																	+ $("#lupa")[0].value);
-											$
-													.ajax(
-															{
-																url : uri + "?query="
-																		+ $("#lupa")[0].value,
-																context : document.body,
-																timeout : 8000,
-																error : function(
-																		x, t, m) {
-																	if (t === "timeout") {
-																		$(
-																				"div.visible .content_widget")
-																				.html(
-																						noresult);
-																	}																}
-															})
-													.done(
-															function(data) {
-																$(
-																		"div.visible .content_widget")
-																		.html(
-																				data);
-                                                                                                                                            if ($("div.visible .content_widget ul li").length == 0) {
-                                                                                                                                                            $("div.visible .content_widget").html(noresult);
-                                                                                                                                            }
-                                                                                                                                                        
-															});
 
-										}
-									});
+$(document).ready(function() {
+	$("#lupa").keypress(function(event) {
+		if (event.keyCode == 13) {
+			if ($("li.active").length > 0) {
+				activo = $("li.active")[0].children[0].attributes[0].value;
+				$("li.active").removeClass(
+						"active");
+			}
+
+			/** Solving Issue #5 - @jesusMarevalo - 20140604 - Define param 'since' */
+			if ($("#sinceDate")[0].value != ""){
+				exists_since = "&since=" + $("#sinceDate")[0].value;
+				exists_since_label = ", since " + $("#sinceDate")[0].value;
+			}else{
+				exists_since = "";
+				exists_since_label = "";
+			}
+			/** Solving Issue #5 - @jesusMarevalo - 20140604 - Define param 'since' */ 
+
+			$(".modulo_widget").removeClass("visible");
+			$("div.visible .content_widget").html(preload);
+			$("#mod_iconEvents").addClass("visible");
+			$("#mod_iconEvents .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value + exists_since_label);
+			$
+				.ajax({
+					url : uri + "?query=" + $("#lupa")[0].value + exists_since,
+					context : document.body,
+					timeout : 8000,
+					error : function(x, t, m) {
+						if (t === "timeout") {
+							$("div.visible .content_widget").html(noresult);
+						}
+					}
+				})
+				.done(function(data) {
+					// Solving Issue #5 - @jesusMarevalo - 20140604 - Refresh map on each search 	
+					initialize("map_canvas","search");
+					$("div.visible .content_widget").html(data);
+					if ($("div.visible .content_widget ul li").length == 0) {
+			                        $("div.visible .content_widget").html(noresult);
+					}
 				});
+		}
+	});
+
+	$('#sinceDate').datepicker({dateFormat: 'yy-mm-dd', firstDay: 1});
+	$('#calendar').click(function(){
+		$('#sinceDate').toggle();
+		if($('#sinceDate').css('display') == "none"){
+			$('#sinceDate').val('');
+			$('#calendar').removeClass('active');
+		}
+	});
+});

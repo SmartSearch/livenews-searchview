@@ -134,12 +134,17 @@ class SMARTSearch {
      * @param string query
 	 * @param float lat
 	 * @param float lon
+     * @param date since
      * @return array Latest
      * @throws Exception
      */
-    public function search($query, $lat=null, $lon=null) {
+    public function search($query, $lat=null, $lon=null, $since=null) {
         $data = array();
-        $params =  array("q"=>$query, "since"=>"2013-11-01");
+        
+	// Solving Issue #5 - @jesusMarevalo - 20140604 - Add param 'since' on search 
+	//$params =  array("q"=>$query, "since"=>"2013-11-01");
+        $params =  array("q"=>$query, "since"=>$since);
+	// Solving Issue #5  
         
         if (!is_null($lat) && !is_null($lon)) {
             $params = array_merge($params, array('lat' => $lat, 'lon' => $lon));
