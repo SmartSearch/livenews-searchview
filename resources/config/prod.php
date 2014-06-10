@@ -32,7 +32,9 @@ $app['assetic.output.path_to_css']      = 'css/styles.css';
 $app['assetic.input.path_to_js']        = array(
     $app['assetic.input.path_to_assets'] . '/js/transition.js',
     $app['assetic.input.path_to_assets'] . '/js/funciones.js',
-    $app['assetic.input.path_to_assets'] . '/js/SimpleMediaPlayer.min.js',
+    // Solving Issue #4 - @jesusMarevalo - 20140610 - Load an open source video player 
+    // Load an open source video player  -  http://html5media.info/ 
+    //$app['assetic.input.path_to_assets'] . '/js/SimpleMediaPlayer.min.js',
 );
 $app['assetic.output.path_to_js']       = 'js/scripts.js';
 
