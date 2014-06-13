@@ -124,6 +124,29 @@ class Api {
 	    array_multisort($startTime, SORT_DESC, $data['results']);
 	}
 	// Solving Issue #3
+
+    for ($i=0;$i<$data['numResults'];$i++){
+        // Solving Issue #1 - @jesusMarevalo - 20140611 - Update geo coordenates from Twitter or FourSquare
+        $data['results'][$i]['profileImageUrl'] = '';
+        $data['results'][$i]['screenName'] = '';
+
+        if (isset($data['results'][$i]['observations']['topTweets'])){
+            // Update profile image and user
+            $data['results'][$i]['screenName'] = $data['results'][$i]['observations']['topTweets'][0]['user']['screen_name'];
+            $check_image = @get_headers($data['results'][$i]['observations']['topTweets'][0]['user']['profile_image_url']);
+            if (!strstr($check_image[0],"404"))
+                $data['results'][$i]['profileImageUrl'] = $data['results'][$i]['observations']['topTweets'][0]['user']['profile_image_url'];                
+
+            // Update geo coordenates
+            if (isset($data['results'][$i]['observations']['topTweets'][0]['geo']['type']) && 
+                $data['results'][$i]['observations']['topTweets'][0]['geo']['type'] == "Point"){
+                    // Update coordinates from Twitter
+                    $data['results'][$i]['lat'] = $data['results'][$i]['observations']['topTweets'][0]['geo']['coordinates'][0];
+                    $data['results'][$i]['lon'] = $data['results'][$i]['observations']['topTweets'][0]['geo']['coordinates'][1];                        
+            }
+        }
+        // Solving Issue #1
+    }
 	
 	if ($this->success) {
 		return $data;
