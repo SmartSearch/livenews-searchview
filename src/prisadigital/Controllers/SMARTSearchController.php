@@ -34,6 +34,8 @@ class SMARTSearchController {
             'comercio'  => $smart->search('shop'),
             'cultura'   => $smart->search('music'),
             'trafico'   => $smart->search('traffic'),
+            //Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+            'search'    => $smart->search(''),
         );
        return $app['twig']->render('index.html.twig', $data);
     }

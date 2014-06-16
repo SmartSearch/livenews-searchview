@@ -4,82 +4,100 @@
 
 {% block content %}
 <script  type="text/javascript">
-	var map;
-	function initialize(position,origen) {
-	var latlng = new google.maps.LatLng(43.469023,-3.785397);
-	var myOptions = {
-		zoom: 13,
-		center: latlng,
-		zoomControl: false,
-		disableDefaultUI: true,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	map = new google.maps.Map(document.getElementById(position), myOptions);
-	google.maps.event.addListener(map, 'click' , function(event) {
-	});
+  var map;
+  function initialize(position,origen) {
+      var latlng = new google.maps.LatLng(43.469023,-3.785397);
+      var myOptions = {
+      	zoom: 13,
+      	center: latlng,
+      	zoomControl: false,
+      	disableDefaultUI: true,
+      	mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById(position), myOptions);
+      google.maps.event.addListener(map, 'click' , function(event) {
+      });
 
-	if(origen =="city"){
-		{{ fn.marcadoresMapa(ciudad) }}
-	}
+      if(origen =="city"){
+      	{{ fn.marcadoresMapa(ciudad) }}
+      }
+      if(origen =="sport"){
+      	{{ fn.marcadoresMapa(deporte) }}
+      }	
+      if(origen =="event"){
+      	{{ fn.marcadoresMapa(comercio) }}
+      }	
+      if(origen =="video"){
+      	{{ fn.marcadoresMapa(trafico) }}
+      }	
+      if(origen =="pics"){
+      	{{ fn.marcadoresMapa(cultura) }}
+      }
+  }
 
-	if(origen =="sport"){
-		{{ fn.marcadoresMapa(deporte) }}
-	}	
+// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+var init_search = false;
 
-	if(origen =="event"){
-		{{ fn.marcadoresMapa(comercio) }}
-	}	
+$(document).ready(function() {
+    initialize("map_canvas","city");
+    $("a#iconSports").click(function () {
+            initialize("map_canvas2","sport"); 
+            $("#iconCity_central").removeClass("active");
+            $("#iconSports_central").addClass("active");
+            $("#iconEvents_central").removeClass("active");
+            $("#iconPic_central").removeClass("active");
+            $("#iconVideo_central").removeClass("active");
+            // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+            $("#iconSearch_central").removeClass("active");
+    });
 
-	if(origen =="video"){
-		{{ fn.marcadoresMapa(trafico) }}
-	}	
-	if(origen =="pics"){
-		{{ fn.marcadoresMapa(cultura) }}
-	}
-}
-        $(document).ready(function() {
-              initialize("map_canvas","city");
-              $("a#iconSports").click(function ()
-                  {
-                      initialize("map_canvas2","sport"); 
-                      $("#iconCity_central").removeClass("active");
-                      $("#iconSports_central").addClass("active");
-                      $("#iconEvents_central").removeClass("active");
-                      $("#iconPic_central").removeClass("active");
-                      $("#iconVideo_central").removeClass("active");
+    $("a#iconEvents").click(function () {
+            initialize("map_canvas3","event");
+            $("#iconCity_central").removeClass("active");
+            $("#iconSports_central").removeClass("active");
+            $("#iconEvents_central").addClass("active");
+            $("#iconPic_central").removeClass("active");
+            $("#iconVideo_central").removeClass("active");
+            // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+            $("#iconSearch_central").removeClass("active");
+    });
+    
+    $("a#iconPics").click(function () {
+            initialize("map_canvas6","pics");
+            $("#iconCity_central").removeClass("active");
+            $("#iconSports_central").removeClass("active");
+            $("#iconEvents_central").removeClass("active");
+            $("#iconPic_central").addClass("active");
+            $("#iconVideo_central").removeClass("active");
+            // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+            $("#iconSearch_central").removeClass("active");
+    });
+    
+    $("a#iconVideo").click(function () {
+            initialize("map_canvas5","video");
+            $("#iconCity_central").removeClass("active");
+            $("#iconSports_central").removeClass("active");
+            $("#iconEvents_central").removeClass("active");
+            $("#iconPic_central").removeClass("active");
+            $("#iconVideo_central").addClass("active");
+            // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+            $("#iconSearch_central").removeClass("active");
+    });
 
-                  });
-				  
-              $("a#iconEvents").click(function ()
-                  {
-                      initialize("map_canvas3","event");
- 
-                      $("#iconCity_central").removeClass("active");
-                      $("#iconSports_central").removeClass("active");
-                      $("#iconEvents_central").addClass("active");
-                      $("#iconPic_central").removeClass("active");
-					  $("#iconVideo_central").removeClass("active");
-                      
-                                    });
-              $("a#iconPics").click(function ()
-                  {
-                      initialize("map_canvas6","pics");
-                      $("#iconCity_central").removeClass("active");
-                      $("#iconSports_central").removeClass("active");
-                      $("#iconEvents_central").removeClass("active");
-                      $("#iconPic_central").addClass("active");
-					  $("#iconVideo_central").removeClass("active");
-               });
-			$("a#iconVideo").click(function ()
-                  {
-                      initialize("map_canvas5","video");
- 
-                      $("#iconCity_central").removeClass("active");
-                      $("#iconSports_central").removeClass("active");
-                      $("#iconEvents_central").removeClass("active");
-                      $("#iconPic_central").removeClass("active");
-					  $("#iconVideo_central").addClass("active");
-              });
+    // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+    $("#lupa").click(function () {        
+        if (!init_search){
+            initialize("map_canvas7","search");
+            init_search = true;
+        }
+        $("#iconCity_central").removeClass("active");
+        $("#iconSports_central").removeClass("active");
+        $("#iconEvents_central").removeClass("active");
+        $("#iconPic_central").removeClass("active");
+        $("#iconVideo_central").removeClass("active");
+        $("#iconSearch_central").addClass("active");
+    });
+    // Solving Issue #1
 
 		$("a#iconColours").click(
 			function () {
@@ -88,8 +106,9 @@
         // Load an open source video player  -  http://html5media.info/ 
         document.getElementById('video').play();               
 			}
-		);			   
-	});
+		);
+});
+
 </script>	  
 
 <div id="header"><img src="{{ app.request.basepath }}/img/logo.png"></div>
@@ -177,6 +196,13 @@ playerConfig = {
 
 				</div><!--central_content-->
 			</div><!--fin iconColours-->
+
+      <!-- Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface -->
+      <div id="iconSearch_central" class="box-central_content">
+          <div class="central_content" id="map_canvas7" style="height: 435px;"> <img src="{{ app.request.basepath }}/img/ejem.jpg"></div>
+      </div><!--iconSearch_central-->
+      <!-- Solving Issue #1 -->
+
 		</div><!--fin playerContainer-->
 
 		<div id="box_buscador">
@@ -198,6 +224,8 @@ playerConfig = {
 		{{ fn.modulo(comercio, 'Shops in Santander', 'mod_iconEvents') }}  
 		{{ fn.modulo(cultura, 'Culture in Santander',  'mod_iconPics') }}  
 		{{ fn.modulo(trafico, 'Traffic in Santander',  'mod_iconVideo')}}
+    {# Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface #}
+    {{ fn.modulo(search, 'Results',  'mod_iconSearch')}}
 	</div><!-- widgets -->
 </div>
 {% endblock %}	

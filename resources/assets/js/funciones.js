@@ -231,8 +231,15 @@ $(document).ready(function() {
 
 			$(".modulo_widget").removeClass("visible");
 			$("div.visible .content_widget").html(preload);
-			$("#mod_iconEvents").addClass("visible");
-			$("#mod_iconEvents .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value + exists_since_label);
+			
+			// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+			//$("#mod_iconEvents").addClass("visible");
+			//$("#mod_iconEvents .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value + exists_since_label);
+			$("#mod_iconEvents").removeClass("visible");	
+			$("#mod_iconSearch").addClass("visible");			
+			$("#mod_iconSearch .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value + exists_since_label);
+			// Solving Issue #1
+
 			$
 				.ajax({
 					url : uri + "?query=" + $("#lupa")[0].value + exists_since,
@@ -245,15 +252,17 @@ $(document).ready(function() {
 					}
 				})
 				.done(function(data) {
-					// Solving Issue #5 - @jesusMarevalo - 20140604 - Refresh map on each search 	
-					initialize("map_canvas","search");
+					// Solving Issue #5 - @jesusMarevalo - 20140604 - Refresh map on each search
+					// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+					initialize("map_canvas7","search");
 					$("div.visible .content_widget").html(data);
 					if ($("div.visible .content_widget ul li").length == 0) {
-			                        $("div.visible .content_widget").html(noresult);
+			            $("div.visible .content_widget").html(noresult);
 					}
 				});
 		}
 	});
+
 
 	$('#sinceDate').datepicker({dateFormat: 'yy-mm-dd', firstDay: 1});
 	$('#calendar').click(function(){

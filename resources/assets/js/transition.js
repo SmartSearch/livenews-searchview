@@ -22,12 +22,6 @@ $(document).ready(function() {
 
 
  //-------window------
-	  
-	
-	
-	
-	
-	
         	$("#iconCity_central").addClass('active');
         	$("#mod_iconCity").addClass('visible');
 
@@ -69,7 +63,12 @@ $(document).ready(function() {
 		 		$('.modulo_widget').removeClass('visible');
 				$("#mod_iconVideo").addClass('visible');
 			});
-
+			// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+			$("#lupa").click(function() {				
+				$('.modulo_widget').removeClass('visible');				
+				$("#mod_iconSearch").addClass('visible');
+			});
+			// Solving Issue #1
 			$("#MenuSidebar li").click(function() {
 					$('#MenuSidebar li').removeClass('active');  
 					$(this).addClass('active'); 
