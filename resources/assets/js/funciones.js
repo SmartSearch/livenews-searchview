@@ -19,6 +19,9 @@ var activo = "";
 var divVacio = '<div class="flexa"></div>';
 var uri = "api/v1";
 
+// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+var init_search = false;
+
 
 /**
  * @param coordenadas

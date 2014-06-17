@@ -35,53 +35,31 @@
       }
   }
 
-// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
-var init_search = false;
+
 
 $(document).ready(function() {
+    
     initialize("map_canvas","city");
+    initialize("map_canvas7","");
+
     $("a#iconSports").click(function () {
-            initialize("map_canvas2","sport"); 
-            $("#iconCity_central").removeClass("active");
-            $("#iconSports_central").addClass("active");
-            $("#iconEvents_central").removeClass("active");
-            $("#iconPic_central").removeClass("active");
-            $("#iconVideo_central").removeClass("active");
-            // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
-            $("#iconSearch_central").removeClass("active");
+        initialize("map_canvas2","sport");
+        // Solving Issue #1 - @jesusMarevalo - 20140617 - Optimize the search interface - code move to transition.js
+    });
+   
+    $("a#iconEvents").click(function () {
+        initialize("map_canvas3","event");
+        // Solving Issue #1 - @jesusMarevalo - 20140617 - Optimize the search interface - code move to transition.js
     });
 
-    $("a#iconEvents").click(function () {
-            initialize("map_canvas3","event");
-            $("#iconCity_central").removeClass("active");
-            $("#iconSports_central").removeClass("active");
-            $("#iconEvents_central").addClass("active");
-            $("#iconPic_central").removeClass("active");
-            $("#iconVideo_central").removeClass("active");
-            // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
-            $("#iconSearch_central").removeClass("active");
-    });
-    
     $("a#iconPics").click(function () {
-            initialize("map_canvas6","pics");
-            $("#iconCity_central").removeClass("active");
-            $("#iconSports_central").removeClass("active");
-            $("#iconEvents_central").removeClass("active");
-            $("#iconPic_central").addClass("active");
-            $("#iconVideo_central").removeClass("active");
-            // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
-            $("#iconSearch_central").removeClass("active");
+        initialize("map_canvas6","pics");
+        // Solving Issue #1 - @jesusMarevalo - 20140617 - Optimize the search interface - code move to transition.js
     });
-    
+
     $("a#iconVideo").click(function () {
-            initialize("map_canvas5","video");
-            $("#iconCity_central").removeClass("active");
-            $("#iconSports_central").removeClass("active");
-            $("#iconEvents_central").removeClass("active");
-            $("#iconPic_central").removeClass("active");
-            $("#iconVideo_central").addClass("active");
-            // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
-            $("#iconSearch_central").removeClass("active");
+        initialize("map_canvas5","video");
+        // Solving Issue #1 - @jesusMarevalo - 20140617 - Optimize the search interface - code move to transition.js
     });
 
     // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
@@ -90,23 +68,16 @@ $(document).ready(function() {
             initialize("map_canvas7","search");
             init_search = true;
         }
-        $("#iconCity_central").removeClass("active");
-        $("#iconSports_central").removeClass("active");
-        $("#iconEvents_central").removeClass("active");
-        $("#iconPic_central").removeClass("active");
-        $("#iconVideo_central").removeClass("active");
-        $("#iconSearch_central").addClass("active");
+        // Solving Issue #1 - @jesusMarevalo - 20140617 - Optimize the search interface - code move to transition.js
     });
     // Solving Issue #1
 
-		$("a#iconColours").click(
-			function () {
-				//mediaPlayer.play();
+    $("a#iconColours").click(function () {
+        //mediaPlayer.play();
         // Solving Issue #4 - @jesusMarevalo - 20140610 - Load an open source video player 
         // Load an open source video player  -  http://html5media.info/ 
         document.getElementById('video').play();               
-			}
-		);
+    });
 });
 
 </script>	  
