@@ -121,6 +121,18 @@ class Latest {
   protected $title;
 
   /**
+  * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+  * @var string
+  */
+  protected $profileImageUrl;
+
+  /**
+  * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+  * @var string
+  */
+  protected $screenName;
+
+  /**
    *
    * @var string
    */
@@ -141,7 +153,7 @@ class Latest {
   /**
    *
    */
-  function __construct($id, DateTime $startTime, $activity, $locationId, $locationName, $locationAddress, $observations, $latestObservations, $media, $lat, $lon, $rank, $score, $description, $URI, $title, $geohash, $lorder, $triggers) {
+  function __construct($id, DateTime $startTime, $activity, $locationId, $locationName, $locationAddress, $observations, $latestObservations, $media, $lat, $lon, $rank, $score, $description, $URI, $title, $geohash, $lorder, $triggers, $profileImageUrl, $screenName) {
       $this->id = $id;
       $this->startTime = $startTime;
       $this->activity = $activity;
@@ -161,6 +173,10 @@ class Latest {
       $this->geohash = $geohash;
       $this->lorder = $lorder;
       $this->triggers = $triggers;
+
+      // Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+      $this->profileImageUrl = $profileImageUrl;
+      $this->screenName = $screenName;
   }
   
   /**
@@ -274,6 +290,26 @@ class Latest {
   public function getTitle() {
       return $this->title;
   }
+
+  /**
+   * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+   */
+  public function getProfileImageUrl() {
+      if (isset($this->profileImageUrl))
+        return $this->profileImageUrl;
+      else
+        return '';
+  }
+
+  /**
+   * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+   */
+  public function getScreenName() {
+      if (isset($this->screenName))
+        return $this->screenName;
+      else
+        return '';
+  }  
 
   /**
    *
@@ -406,6 +442,20 @@ class Latest {
    */
   public function setTitle($title) {
       $this->title = $title;
+  }
+
+  /**
+   * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+   */
+  public function setProfileImageUrl($profileImageUrl) {
+      $this->profileImageUrl = $profileImageUrl;
+  }
+
+  /**
+   * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+   */
+  public function setScreenName($screenName) {
+      $this->screenName = $screenName;
   }
 
   /**

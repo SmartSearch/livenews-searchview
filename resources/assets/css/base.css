@@ -138,6 +138,9 @@ a {
 a:hover {
 	color: #fff;
 }
+.autor_twitter, .autor_twitter:hover{
+	color: #3F8BFB;
+}
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	font-family: inherit;

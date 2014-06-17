@@ -5,11 +5,15 @@
          {% set fecha=elem.startTime| date('d-m-Y H:i:s') %}
 
              <li>
-                 {% if elem.firstTrigger in ['totalCheckIns', 'crowd_density', 'traffic_score', 'music_score'] %}
-                     <img  src="{{ app.request.basepath }}/img/crowd.png">
-                 {% elseif elem.firstTrigger == 'topTweets' %}
-                     <img  src="{{ app.request.basepath }}/img/twitter.png">
-                 {% endif %}
+                {% if elem.firstTrigger in ['totalCheckIns', 'crowd_density', 'traffic_score', 'music_score'] %}
+                    <img  src="{{ app.request.basepath }}/img/crowd.png">
+                {% elseif elem.firstTrigger == 'topTweets' %}
+                    {%- if elem.profileImageUrl == '' -%}
+                        <img  src="{{ app.request.basepath }}/img/twitter.png">
+                    {%- else -%}
+                        <img  src="{{ elem.profileImageUrl }}">
+                    {% endif %}   
+                {% endif %}
                  <div class="txt_widget">
                      <p class="autor">
                          {%- if elem.firstTrigger == 'totalCheckIns' -%}
@@ -17,7 +21,8 @@
                          {%- elseif elem.firstTrigger in ['crowd_density', 'traffic_score', 'music_score'] -%}
                          Sensor
                          {%- elseif elem.firstTrigger == 'topTweets' -%}
-                         Twitter
+                            {# Twitter #}
+                            <a href="https://twitter.com/{{ elem.screenName }}" target="_blank" class="autor_twitter">@{{ elem.screenName }}</a>
                          {%- endif -%}
                          <span class="fecha">{{ fecha|date('d-m-Y H:i') }}</span>
                      </p>

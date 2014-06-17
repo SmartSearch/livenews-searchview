@@ -178,9 +178,12 @@ class SMARTSearch {
 							$elem['title'], 
 							$elem['geohash'], 
 							$elem['lorder'], 
-							$elem['triggers']
+							$elem['triggers'],
+                            $elem['profileImageUrl'],
+                            $elem['screenName']
 					);
 				}
+                // // Solving Issue #1 - @jesusMarevalo - 20140611 - Add parameteres profileImageUrl and screenName on array $elem
 			}
 		} catch(Exception $e) {
 			$this->logger->error($e->getMessage());
