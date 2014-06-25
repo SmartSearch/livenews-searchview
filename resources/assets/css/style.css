@@ -257,6 +257,8 @@ body#city {
 .content_widget li .txt_widget{text-align:left;float:right;width:75%}
 .content_widget li p.autor{color:#3f8bfb;position: relative;}
 .content_widget li span.fecha{right:5px;position:absolute}
+.content_widget li a.tweet{color:#fff;}
+.content_widget li a.tweet:hover{color:#EC06BB;}
 
 /*====================__ WINDOW1 __=======================*/
 
