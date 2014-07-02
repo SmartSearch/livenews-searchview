@@ -385,12 +385,11 @@ body#city {
 /* Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected */
 #completeList {
 	background: #333333;
-	border: 1px solid #CCCCCC;
-	color: #CCCCCC;
-	float: right;
-	font-size: 0.8em;
-	margin-right: 5%;
-	width: 150px;
-	display: none;
-}
-
+    border: 1px solid #CCCCCC;
+    color: #CCCCCC;
+    float: right;
+    font-size: 0.8em;
+    margin-right: 5%;
+    width: 150px;
+    display: none;
+ }

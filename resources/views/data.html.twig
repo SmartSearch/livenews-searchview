@@ -68,16 +68,15 @@
              {# Localización de los puntos en el mapa #}
         {% endfor %}
     </ul>
-    <input type="button" id="completeList" onclick="restoreList()" value={{ 'Full_list'|trans }} />     
+    <input type="button" id="completeList" onclick="restoreList()" value={{ 'Full_list'|trans }} />   
 
-+<script>
-
+<script>
 $(document).ready(function() {
     // Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
     //$("div.visible .content_widget li").click(function(){
     //    setFlagUp(this.id);
     //});
+
 });
 </script>
-
 {% endmacro %}

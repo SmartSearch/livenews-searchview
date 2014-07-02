@@ -17,7 +17,6 @@
       map = new google.maps.Map(document.getElementById(position), myOptions);
       google.maps.event.addListener(map, 'click' , function(event) {
       });
-
       if(origen =="city"){
       	{{ fn.marcadoresMapa(ciudad) }}
       }
@@ -78,6 +77,8 @@ $(document).ready(function() {
         // Load an open source video player  -  http://html5media.info/ 
         document.getElementById('video').play();               
     });
+
+
 });
 
 </script>	  
@@ -203,16 +204,18 @@ playerConfig = {
 			  
 {% macro marcadoresMapa(content) %}
     {% for elem in content %}
-        santanderEstePoint = new google.maps.Marker({
-                position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
-                title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}',
-                id: '{{ elem.id }}'
+        santanderEstePoint['{{ elem.id }}'] = new google.maps.Marker({
+              position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
+              title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}',
+              id: '{{ elem.id }}'
         });
         santanderEstePoint['{{ elem.id }}'].setMap(map);
         santanderEstePoint['{{ elem.id }}'].set('id','{{ elem.id }}');
         google.maps.event.addListener(santanderEstePoint['{{ elem.id }}'], 'click', santanderEsteClick);
     {% endfor %}
 {% endmacro %}
+
+
 
 {% macro moduloDataDirect(content, title, id) %}
     {% import _self as fn %}
