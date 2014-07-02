@@ -4,10 +4,11 @@
 
          {% set fecha=elem.startTime| date('d-m-Y H:i:s') %}
 
-             <li>
+             <li id="{{ elem.id }}" onclick="setFlagUp(this.id)">
                 {% if elem.firstTrigger in ['totalCheckIns', 'crowd_density', 'traffic_score', 'music_score'] %}
                     <img  src="{{ app.request.basepath }}/img/crowd.png">
                 {% elseif elem.firstTrigger == 'topTweets' %}
+                    {# // Solving Issue #1 - @jesusMarevalo - 20140611 - Update design to twitter #}
                     {%- if elem.profileImageUrl == '' -%}
                         <img  src="{{ app.request.basepath }}/img/twitter.png">
                     {%- else -%}
@@ -22,6 +23,7 @@
                          Sensor
                          {%- elseif elem.firstTrigger == 'topTweets' -%}
                             {# Twitter #}
+                            {# // Solving Issue #1 - @jesusMarevalo - 20140611 - Update design to twitter #}
                             <a href="https://twitter.com/{{ elem.screenName }}" target="_blank" class="autor_twitter">@{{ elem.screenName }}</a>
                          {%- endif -%}
                          <span class="fecha">{{ fecha|date('d-m-Y H:i') }}</span>
@@ -54,16 +56,28 @@
 
              {# Localización de los puntos en el mapa #}
              <script>
-                santanderEstePoint = new google.maps.Marker({
+                santanderEstePoint['{{ elem.id }}'] = new google.maps.Marker({
                       position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
-                      title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}'
+                      title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}',
+                      id: '{{ elem.id }}'
                 });
-                santanderEstePoint.setMap(map);
-                google.maps.event.addListener(santanderEstePoint, 'click', santanderEsteClick);
+                santanderEstePoint['{{ elem.id }}'].setMap(map);
+                santanderEstePoint['{{ elem.id }}'].set('id','{{ elem.id }}');
+                google.maps.event.addListener(santanderEstePoint['{{ elem.id }}'], 'click', santanderEsteClick);
               </script>
              {# Localización de los puntos en el mapa #}
         {% endfor %}
-    </ul>    
+    </ul>
+    <input type="button" id="completeList" onclick="restoreList()" value={{ 'Full_list'|trans }} />     
 
++<script>
+
+$(document).ready(function() {
+    // Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
+    //$("div.visible .content_widget li").click(function(){
+    //    setFlagUp(this.id);
+    //});
+});
+</script>
 
 {% endmacro %}

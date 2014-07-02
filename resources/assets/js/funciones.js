@@ -22,6 +22,13 @@ var uri = "api/v1";
 // Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
 var init_search = false;
 
+//Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
+var santanderEstePoint = [];
+var santanderOestePoint = [];
+var image = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C3F8BFB";
+var lastFlagUp = "";
+
+
 
 /**
  * @param coordenadas
@@ -29,10 +36,8 @@ var init_search = false;
 function mapaClick(coordenadas) {
 	map.panTo(coordenadas);
 	$("div.visible .content_widget").html("");
-	$("#mod_iconSports .tit_widget")[0].innerHTML = divVacio
-			+ " Deportes Santander ";
-	$("#mod_iconPics .tit_widget")[0].innerHTML = divVacio
-			+ " Ciudad Santander";
+	$("#mod_iconSports .tit_widget")[0].innerHTML = divVacio + " Deportes Santander ";
+	$("#mod_iconPics .tit_widget")[0].innerHTML = divVacio + " Ciudad Santander";
 	if ($(".active #iconSports").length != 1)
 		$("#mod_iconCity .tit_widget").html(divVacio + " Ciudad Santander");
 	else
@@ -48,53 +53,43 @@ function santanderEsteClick(event) {
 	var latitudLongitud = event.latLng;
 	var latitud = latitudLongitud.lat();
 	var longitud = latitudLongitud.lng();
+	var id = this.id;
 
 	if ($(".active").length == 0)
 		$(".icon_menuSidebar #iconCity").parent().addClass("active");
 
 	if (activo != "" && $(".active").lenght == 1) {
-		$("#" + activo)[0].parentNode.className = $("#" + activo)[0].parentNode.className
-				+ " active ";
+		$("#" + activo)[0].parentNode.className = $("#" + activo)[0].parentNode.className + " active ";
 	}
 	$(".modulo_widget").removeClass("visible");
 
 	if ($(".active #iconCity").length == 1) {
-		link = uri+ "?origen=city&latitud=" + latitud + "&longitud="
-				+ longitud;
+		link = uri+ "?origen=city&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconCity").addClass("visible");
-		$("#iconCity")[0].parentNode.className = $("#iconCity")[0].parentNode.className
-				+ "   active ";
+		$("#iconCity")[0].parentNode.className = $("#iconCity")[0].parentNode.className + "   active ";
 	}
 
 	if ($(".active #iconSports").length == 1) {
-		$("#iconSports")[0].parentNode.className = $("#iconSports")[0].parentNode.className
-				+ " active ";
-		link = uri+ "?origen=sport&latitud=" + latitud + "&longitud="
-				+ longitud;
+		$("#iconSports")[0].parentNode.className = $("#iconSports")[0].parentNode.className + " active ";
+		link = uri+ "?origen=sport&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconSports").addClass("visible");
 	}
 
 	if ($(".active #iconEvents").length == 1) {
-		$("#iconEvents")[0].parentNode.className = $("#iconEvents")[0].parentNode.className
-				+ " active ";
-		link = uri+ "?origen=sport&latitud=" + latitud + "&longitud="
-				+ longitud;
+		$("#iconEvents")[0].parentNode.className = $("#iconEvents")[0].parentNode.className + " active ";
+		link = uri+ "?origen=sport&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconEvents").addClass("visible");
 	}
 
 	if ($(".active #iconPics").length == 1) {
-		$("#iconPics")[0].parentNode.className = $("#iconPics")[0].parentNode.className
-				+ " active ";
-		link = uri+ "?origen=sport&latitud=" + latitud + "&longitud="
-				+ longitud;
+		$("#iconPics")[0].parentNode.className = $("#iconPics")[0].parentNode.className + " active ";
+		link = uri+ "?origen=sport&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconPics").addClass("visible");
 	}
 
 	if ($(".active #iconVideo").length == 1) {
-		$("#iconVideo")[0].parentNode.className = $("#iconVideo")[0].parentNode.className
-				+ " active ";
-		link = uri+ "?origen=traffic&latitud=" + latitud
-				+ "&longitud=" + longitud;
+		$("#iconVideo")[0].parentNode.className = $("#iconVideo")[0].parentNode.className + " active ";
+		link = uri+ "?origen=traffic&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconVideo").addClass("visible");
 	}
 
@@ -152,6 +147,20 @@ function santanderOesteClick() {
 		$("#mod_iconSports").addClass("visible");
 	}
 
+	if ($("#iconSearch_central").attr("class").indexOf("active") >= 0) {
+		$("#mod_iconSearch").addClass("visible");
+	}
+
+	// Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
+	// hide all events
+	$(" div.visible .content_widget li").css("display","none");
+	// show selected event
+	$("#"+id).css("display","block");
+	// show button to return to complete list
+	$(" div.visible #completeList").show();
+	// Solving Issue #11
+
+	/*
 	$("div.visible .content_widget").html(preload);
 	$.ajax({
 		url : link,
@@ -171,7 +180,51 @@ function santanderOesteClick() {
 				$("div.visible .content_widget").html(noresult);
                 }
 	});
+	*/
 }
+
+
+/*
+* Show all events on click "restore button", after select a flag on the map
+* Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
+*/
+function restoreList() {
+	$(" div.visible .content_widget li").css("display","block");
+	$(" div.visible #completeList").hide();
+	setFlagDown();
+};
+
+
+/**
+* Update on the map de flag selected on the event list and call to restore the last flag
+* @param id
+*/
+function setFlagUp(id) {
+	// restore the last flag selected
+	setFlagDown();
+	// update with the new flag selected
+	lastFlagUp = id;
+	// up the new flat selected
+	santanderEstePoint[id].setAnimation(google.maps.Animation.BOUNCE);
+	santanderEstePoint[id].setIcon(image);
+	// reset on the map
+	santanderEstePoint[id].set(map);
+}
+
+/**
+* restore last flag on var lastFlagUp
+* @param id
+*/
+function setFlagDown() {
+	if (lastFlagUp) {
+		// down the lastFlagUp flat
+		santanderEstePoint[lastFlagUp].setAnimation();
+		santanderEstePoint[lastFlagUp].setIcon();
+		// reset on the map
+		santanderEstePoint[lastFlagUp].set(map);
+	}
+}
+
 
 /**
  * 
@@ -197,10 +250,10 @@ function poligonos() {
 	santanderEste = new google.maps.Polygon({
 		paths : poligonoEste,
 		strokeColor : "#FF0000",
-		strokeOpacity : 0.1,
-		strokeWeight : 2,
+		//strokeOpacity : 0.1,
+		//strokeWeight : 2,
 		fillColor : "#FF0000",
-		fillOpacity : 0.1
+		//fillOpacity : 0.1
 	});
 	santanderOeste = new google.maps.Polygon({
 		paths : poligonoOeste,
