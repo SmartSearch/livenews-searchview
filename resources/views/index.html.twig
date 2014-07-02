@@ -17,7 +17,6 @@
       map = new google.maps.Map(document.getElementById(position), myOptions);
       google.maps.event.addListener(map, 'click' , function(event) {
       });
-
       if(origen =="city"){
       	{{ fn.marcadoresMapa(ciudad) }}
       }
@@ -78,6 +77,8 @@ $(document).ready(function() {
         // Load an open source video player  -  http://html5media.info/ 
         document.getElementById('video').play();               
     });
+
+
 });
 
 </script>	  
@@ -203,15 +204,18 @@ playerConfig = {
 			  
 {% macro marcadoresMapa(content) %}
     {% for elem in content %}
-        santanderEstePoint = new google.maps.Marker({
-                position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
-                title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}'
+        santanderEstePoint['{{ elem.id }}'] = new google.maps.Marker({
+              position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
+              title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}',
+              id: '{{ elem.id }}'
         });
-        santanderEstePoint.setMap(map);
-        google.maps.event.addListener(santanderEstePoint, 'click', santanderEsteClick);
+        santanderEstePoint['{{ elem.id }}'].setMap(map);
+        santanderEstePoint['{{ elem.id }}'].set('id','{{ elem.id }}');
+        google.maps.event.addListener(santanderEstePoint['{{ elem.id }}'], 'click', santanderEsteClick);
     {% endfor %}
-        
 {% endmacro %}
+
+
 
 {% macro moduloDataDirect(content, title, id) %}
     {% import _self as fn %}
@@ -251,7 +255,7 @@ playerConfig = {
 
          {% set fecha=elem.startTime| date('d-m-Y H:i:s') %}
 
-             <li>
+             <li id="{{ elem.id }}" onclick="setFlagUp(this.id)">
                  {% if elem.firstTrigger in ['totalCheckIns', 'crowd_density', 'traffic_score', 'music_score'] %}
                      <img  src="{{ app.request.basepath }}/img/crowd.png">
                  {% elseif elem.firstTrigger == 'topTweets' %}
@@ -301,6 +305,7 @@ playerConfig = {
                  </div>
              </li>
         {% endfor %}
-    </ul>    
+    </ul>
+    <input type="button" id="completeList" onclick="restoreList()" value={{ 'Full_list'|trans }} />
 {% endmacro %}
     
