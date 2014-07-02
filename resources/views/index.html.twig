@@ -205,7 +205,7 @@ playerConfig = {
     {% for elem in content %}
         santanderEstePoint = new google.maps.Marker({
                 position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
-                title: '{{elem.locationName}}'
+                title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}'
         });
         santanderEstePoint.setMap(map);
         google.maps.event.addListener(santanderEstePoint, 'click', santanderEsteClick);
@@ -289,7 +289,7 @@ playerConfig = {
                          {%- elseif elem.firstTrigger == 'traffic_score' -%}
                          Se observa tráfico alto de vehículos en los alrededores de {{ elem.locationName }}. Traffic score {{ elem.score }}
                          {%- elseif elem.firstTrigger == 'topTweets' -%}
-                         {{ elem.tuitDescription }}  {{ fecha }}
+                         {{ elem.tuitDescription | raw }}  {{ fecha }}
                          {%- elseif elem.firstTrigger == 'music_score' -%}
                              {%- if elem.musicScoreObservation <= 0.4 -%}
                                  Audio análisis indica probabilidad de evento musical en  {{ elem.locationName }}. Crowd density {{ elem.score }} Music score {{ elem.musicScoreObservation }}

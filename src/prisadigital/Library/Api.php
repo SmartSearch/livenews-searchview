@@ -152,6 +152,12 @@ class Api {
                         $data['results'][$i]['lat'] = $data['results'][$i]['observations']['topTweets'][0]['geo']['coordinates'][0];
                         $data['results'][$i]['lon'] = $data['results'][$i]['observations']['topTweets'][0]['geo']['coordinates'][1];                        
                 }
+
+                // Update tweet
+                if (isset($data['results'][$i]['observations']['topTweets'][0]['text'])){
+                    //echo "<pre>TWEET: ";print_r($data['results'][$i]['observations']['topTweets'][0]['text']);echo "</pre><br>";
+                    $data['results'][$i]['observations']['topTweets'][0]['text'] = $this->updateTweet($data['results'][$i]['observations']['topTweets'][0]['text']);
+                }
             }
             // Solving Issue #1
         }
@@ -162,4 +168,23 @@ class Api {
     		throw new Exception($context.' The search has failed');
     	}
     }
+
+    
+    /**
+    * Update tweet
+    */
+    function updateTweet($tweet){
+        $t = explode(" ", $tweet);
+        foreach ($t as $word => $value) {
+            if (strstr($value, "#") and $value[0] == "#" and strlen($value) > 1)
+                $t[$word] = '<a href="https://twitter.com/hashtag/'.substr($value,1).'" class="tweet" target="_blank" title="Open hastag">'.$value.'</a>';
+            if (strstr($value, "@") and $value[0] == "@" and strlen($value) > 1)
+                $t[$word] = '<a href="https://twitter.com/'.substr($value,1).'" class="tweet" target="_blank" title="Open profile">'.$value.'</a>';
+            if (strstr($value, "http") and substr($value,0,4) == "http" and strlen($value) > 4)
+                $t[$word] = "<a href='".$value."' class='tweet' target='_blank' title='Open url'>".$value."</a>";
+        }
+        $tweet = implode(" ", $t);
+        return $tweet;
+    }
+
 }
