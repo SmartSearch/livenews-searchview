@@ -103,9 +103,7 @@ class Api {
         $query = http_build_query($this->getQueryParams());
         
         $completeURL = $this->url. $this->searchMethod. "?". $query;
-        $this->logger->info($context.
-            ' The search we are trying to execute is {completeURL}.', 
-            array("completeURL" => $completeURL));
+        $this->logger->info($context.' The search we are trying to execute is {completeURL}.', array("completeURL" => $completeURL));
         $response = $this->response = @file_get_contents($completeURL);
 
         if ($response !== false) {
@@ -116,25 +114,23 @@ class Api {
             }
         }
 
-        //Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
+        // Optimize the search interface
         if ($query == "q="){
             $data['numResults'] = 0;
             $data['results'] = array();
             $this->success = true;
         }
-        //Solving Issue #1
 	
-    	// Solving Issue #3 - @jesusMarevalo - 20140526 - Sort by startTime
+    	// Sort by startTime
     	if(!empty($data['results'])){
     	    foreach ($data['results'] as $key => $row) {
     		$startTime[$key]  = $row['startTime'];
     	    }
     	    array_multisort($startTime, SORT_DESC, $data['results']);
     	}
-    	// Solving Issue #3
 
         for ($i=0;$i<$data['numResults'];$i++){
-            // Solving Issue #1 - @jesusMarevalo - 20140611 - Update geo coordenates from Twitter or FourSquare
+            // Update geo coordenates from Twitter or FourSquare
             $data['results'][$i]['profileImageUrl'] = '';
             $data['results'][$i]['screenName'] = '';
 
@@ -155,11 +151,9 @@ class Api {
 
                 // Update tweet
                 if (isset($data['results'][$i]['observations']['topTweets'][0]['text'])){
-                    //echo "<pre>TWEET: ";print_r($data['results'][$i]['observations']['topTweets'][0]['text']);echo "</pre><br>";
                     $data['results'][$i]['observations']['topTweets'][0]['text'] = $this->updateTweet($data['results'][$i]['observations']['topTweets'][0]['text']);
                 }
             }
-            // Solving Issue #1
         }
 	
     	if ($this->success) {

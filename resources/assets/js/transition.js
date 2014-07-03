@@ -15,108 +15,123 @@
 
 $(document).ready(function() {
 
-    // Solving Issue #1 - @jesusMarevalo - 20140617 - Optimize the search interface - jquery from index.html.twig
-    $("a#iconSports").click(function () {
-        $(".box-central_content").removeClass("active");
-        $("#iconSports_central").addClass("active");
-    });
-    $("a#iconEvents").click(function () {
-        $(".box-central_content").removeClass("active");
-        $("#iconEvents_central").addClass("active");
-    });
-    $("a#iconPics").click(function () {
-        $(".box-central_content").removeClass("active");
-        $("#iconPic_central").addClass("active");
-    });
-    $("a#iconVideo").click(function () {
-        $(".box-central_content").removeClass("active");
-        $("#iconVideo_central").addClass("active");
-    });
-    $("#lupa").click(function () {
-        $(".icon_menuSidebar").removeClass("active");
-        $(".box-central_content").removeClass("active");
-        $("#iconSearch_central").addClass("active");
-    });
-	/// Solving Issue #1
-	
-	//-------BARRA-------
-	$("#barra img").click(function () {
-		$("#cont_barra").slideToggle("slow");
-	});
-
-	//-------window------
 	$("#iconCity_central").addClass('active');
 	$("#mod_iconCity").addClass('visible');
 
     //-------contenido_central-------
+
+    // city -> city
 	$("#iconCity").click(function() {
-		$('.box-central_content').removeClass('active');
-		$("#iconCity_central").addClass('active');
+		// toggle navbar
+		$('.nav li').removeClass('active');
+		$('#iconCity').addClass('active');
+
+		// toggle map content
+		$(".box-central_content").removeClass("active");
+        $("#iconCity_central").addClass("active");
+
+        // toggle list of events
 		$('.modulo_widget').removeClass('visible');
 		$("#mod_iconCity").addClass('visible');
 	});
+
+	// sports -> sports
 	$("#iconSports").click(function() {
-		$('.box-central_content').removeClass('active');
-		$("#iconSports_central").addClass('active');
+		// toggle navbar
+		$('.nav li').removeClass('active');
+		$('#iconSports').addClass('active');
+
+		// toggle map content
+		$(".box-central_content").removeClass("active");
+        $("#iconSports_central").addClass("active");
+
+        // toggle list of events
 		$('.modulo_widget').removeClass('visible');
 		$("#mod_iconSports").addClass('visible');
 	});
+
+	// colours -> color
 	$("#iconColours").click(function() {
+		// toggle navbar
+		$('.nav li').removeClass('active');
+		$('#iconColours').addClass('active');
+
+		// toggle map content
 		$('.box-central_content').removeClass('active');
 		$("#iconColours_central").addClass('active');
+
+		// toggle list of events
 		$('.modulo_widget').removeClass('visible');
 		$("#mod_iconColours").addClass('visible');
 	});
+
+	// events -> shops
 	$("#iconEvents").click(function() {
-		$('.box-central_content').removeClass('active');
-		$("#iconEvents_central").addClass('active');
+		// toggle navbar
+		$('.nav li').removeClass('active');
+		$('#iconEvents').addClass('active');
+
+		// toggle map content
+		$(".box-central_content").removeClass("active");
+        $("#iconEvents_central").addClass("active");
+
+        // toggle list of events
 		$('.modulo_widget').removeClass('visible');
 		$("#mod_iconEvents").addClass('visible');
 	});
+
+	// pics -> culture
 	$("#iconPics").click(function() {
-		$('.box-central_content').removeClass('active');
-		$("#iconPic_central").addClass('active');
+		// toggle navbar
+		$('.nav li').removeClass('active');
+		$('#iconPics').addClass('active');
+
+		// toggle map content
+		$(".box-central_content").removeClass("active");
+        $("#iconPic_central").addClass("active");
+
+        // toggle list of events
 		$('.modulo_widget').removeClass('visible');
 		$("#mod_iconPics").addClass('visible');
 	});
+	
+	// video -> traffic
 	$("#iconVideo").click(function() {
-		$('.box-central_content').removeClass('active');
-		$("#iconVideo_central").addClass('active');
+		// toggle navbar
+		$('.nav li').removeClass('active');
+		$('#iconVideo').addClass('active');
+
+		// toggle map content
+		$(".box-central_content").removeClass("active");
+        $("#iconVideo_central").addClass("active");
+
+		// toggle list of events
 		$('.modulo_widget').removeClass('visible');
 		$("#mod_iconVideo").addClass('visible');
 	});
-	// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
-	$("#lupa").click(function() {				
+
+	// search -> search
+	$("#searching").click(function() {
+		// toggle navbar
+		$('.nav li').removeClass('active');
+		
+		// toggle map content
+        $(".box-central_content").removeClass("active");
+        $("#iconSearch_central").addClass("active");
+
+        // toggle list of events
 		$('.modulo_widget').removeClass('visible');				
 		$("#mod_iconSearch").addClass('visible');
 	});
-	// Solving Issue #1
-	$("#MenuSidebar li").click(function() {
-		$('#MenuSidebar li').removeClass('active');  
-		$(this).addClass('active'); 
-		$('#MenuSidebar .desactive').removeClass('active');
-	});
 
-	//-------buscador-------
-	$("#mod_filter a").click(function() {
-		$('#mod_filter a').removeClass('active');  
-		$(this).addClass('active'); 
-	});
-	$("#lupa").click(function() {
-		$('#mod_filter a').removeClass('active');  
-	});
-	$("#sidebar").click(function() {
-		$('#mod_filter a').removeClass('active');  
-	});
 
 	//-------widgets-------
 	window.addEventListener('onorientationchange', function () {
 		window.location.reload()    	
 	});
-    
+
 	var mq = window.matchMedia( "(min-width: 850px)" ); 
 	if (mq.matches) {  
-
 		// window width is at least 850px 
 		$('#menu_tw').addClass('active'); 
 		$("#mod_twitter").addClass('visible');
@@ -148,7 +163,6 @@ $(document).ready(function() {
 		});
 
 	} else {
-
 		// window width is less than 850px  
 		$("#iconTwitter").click(function() {
 			$('.modulo_widget').fadeOut("slow");
@@ -181,7 +195,9 @@ $(document).ready(function() {
 			$('#widgets').fadeOut("slow");
 			$('#playerContainer').css('opacity', '1');
 		});
-			
-	}  
+	}
+
 
 });
+
+

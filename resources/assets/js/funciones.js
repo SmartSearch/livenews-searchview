@@ -13,15 +13,12 @@
 *  PRISA Digital
 */
 
-var preload = '<div id="preloader" syle="text-align:center;margin:0;"><img src="/assets/img/ajax-loader1.gif"></div>';
+var preload = '<div id="preloader" syle="text-align:center;margin:0;"><img src="/img/ajax-loader1.gif"></div>';
 var noresult = '<ul class="jspPane"><li>      <div class="txt_widget"> <p class="autor"> 0 Resultados </p> <p>Esta consulta no genera resultados </p>       </div>    </li></ul>';
 var activo = "";
-var divVacio = '<div class="flexa"></div>';
-var uri = "api/v1";
+var uri = "index_dev.php/api/v1";
 
-// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
 var init_search = false;
-//Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
 var santanderEstePoint = [];
 var santanderOestePoint = [];
 var image = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C3F8BFB";
@@ -34,13 +31,12 @@ var lastFlagUp = "";
 function mapaClick(coordenadas) {
 	map.panTo(coordenadas);
 	$("div.visible .content_widget").html("");
-	$("#mod_iconSports .tit_widget")[0].innerHTML = divVacio + " Deportes Santander ";
-	$("#mod_iconPics .tit_widget")[0].innerHTML = divVacio + " Ciudad Santander";
+	$("#mod_iconSports .tit_widget")[0].innerHTML = "Deportes Santander ";
+	$("#mod_iconPics .tit_widget")[0].innerHTML = "Ciudad Santander";
 	if ($(".active #iconSports").length != 1)
-		$("#mod_iconCity .tit_widget").html(divVacio + " Ciudad Santander");
+		$("#mod_iconCity .tit_widget").html("Ciudad Santander");
 	else
-		$("#mod_iconSports .tit_widget").html(divVacio + " Deportes Santander ");
-
+		$("#mod_iconSports .tit_widget").html("Deportes Santander ");
 }
 
 /**
@@ -59,35 +55,28 @@ function santanderEsteClick(event) {
 		$("#" + activo)[0].parentNode.className = $("#" + activo)[0].parentNode.className + " active ";
 	}
 	
-	//$(".modulo_widget").removeClass("visible");
-
 	if ($(".active #iconCity").length == 1) {
-		//link = uri+ "?origen=city&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconCity").addClass("visible");
 		$("#iconCity")[0].parentNode.className = $("#iconCity")[0].parentNode.className + "   active ";
 	}
 
 	if ($(".active #iconSports").length == 1) {
 		$("#iconSports")[0].parentNode.className = $("#iconSports")[0].parentNode.className + " active ";
-		//link = uri+ "?origen=sport&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconSports").addClass("visible");
 	}
 
 	if ($(".active #iconEvents").length == 1) {
 		$("#iconEvents")[0].parentNode.className = $("#iconEvents")[0].parentNode.className + " active ";
-		//link = uri+ "?origen=sport&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconEvents").addClass("visible");
 	}
 
 	if ($(".active #iconPics").length == 1) {
 		$("#iconPics")[0].parentNode.className = $("#iconPics")[0].parentNode.className + " active ";
-		//link = uri+ "?origen=sport&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconPics").addClass("visible");
 	}
 
 	if ($(".active #iconVideo").length == 1) {
 		$("#iconVideo")[0].parentNode.className = $("#iconVideo")[0].parentNode.className + " active ";
-		//link = uri+ "?origen=traffic&latitud=" + latitud + "&longitud=" + longitud;
 		$("#mod_iconVideo").addClass("visible");
 	}
 
@@ -95,42 +84,19 @@ function santanderEsteClick(event) {
 		$("#mod_iconSearch").addClass("visible");
 	}
 
-	
-	// Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
 	// hide all events
 	$(" div.visible .content_widget li").css("display","none");
+
 	// show selected event
 	$("#"+id).css("display","block");
+
 	// show button to return to complete list
 	$(" div.visible #completeList").show();
-	// Solving Issue #11
 
-	/*
-	// Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
-	$("div.visible .content_widget").html(preload);
-	$.ajax({
-		url : link,
-		context : document.body,
-		timeout : 8000,
-		error : function(x, t, m) {
-			if (t === "timeout") {
-				$("div.visible .content_widget").html(noresult);
-			}
-		}
-	}).done(function(data) {
-		$(" div.visible .content_widget").html(data);
-		$(".jspContainer").height("100%");
-                if ($("div.visible .content_widget ul li").length == 0) {
-				$("div.visible .content_widget").html(noresult);
-                }
-                
-	});
-	*/
 }
 
 /**
 * Show all events on click "restore button", after select a flag on the map
-* Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
 */
 function restoreList() {
 	$(" div.visible .content_widget li").css("display","block");
@@ -151,26 +117,20 @@ function santanderOesteClick() {
 		$(".icon_menuSidebar #iconCity").parent().addClass("active");
 
 	if (activo != "" && $(".active").lenght == 1) {
-		$("#" + activo)[0].parentNode.className = $("#" + activo)[0].parentNode.className
-				+ " active ";
+		$("#" + activo)[0].parentNode.className = $("#" + activo)[0].parentNode.className + " active ";
 	}
 
 	$(".modulo_widget").removeClass("visible");
+
 	if ($(".active #iconSports").length != 1) {
-		$("#iconCity")[0].parentNode.className = $("#iconCity")[0].parentNode.className
-				+ " active ";
+		$("#iconCity")[0].parentNode.className = $("#iconCity")[0].parentNode.className + " active ";
 		link = uri + "?sector=oeste";
-		$("#mod_iconCity .tit_widget")
-				.html(
-						divVacio
-								+ " Results for CITY Smart Search in Plaza del Ayuntamiento");
+		$("#mod_iconCity .tit_widget").html("Results for CITY Smart Search in Plaza del Ayuntamiento");
 		$("#mod_iconCity").addClass("visible");
 	} else {
 		link = "ws/deportes.php?sector=oeste";
-		$("#iconSports")[0].parentNode.className = $("#iconSports")[0].parentNode.className
-				+ " active ";
-		$("#mod_iconSports .tit_widget").html(
-				divVacio + " Results for SPORTS Smart Search: ");
+		$("#iconSports")[0].parentNode.className = $("#iconSports")[0].parentNode.className + " active ";
+		$("#mod_iconSports .tit_widget").html("Results for SPORTS Smart Search: ");
 		$("#mod_iconSports").addClass("visible");
 	}
 
@@ -178,36 +138,15 @@ function santanderOesteClick() {
 		$("#mod_iconSearch").addClass("visible");
 	}
 
-	// Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
 	// hide all events
 	$(" div.visible .content_widget li").css("display","none");
+
 	// show selected event
 	$("#"+id).css("display","block");
+
 	// show button to return to complete list
 	$(" div.visible #completeList").show();
-	// Solving Issue #11
 
-	/*
-	$("div.visible .content_widget").html(preload);
-	$.ajax({
-		url : link,
-		context : document.body,
-		timeout : 8000,
-		error : function(x, t, m) {
-			if (t === "timeout") {
-				$("div.visible .content_widget").html(noresult);
-			} else {
-
-			}
-		}
-	}).done(function(data) {
-		$("div.visible .content_widget").html(data);
-		$(".jspContainer").height("100%");
-                if ($("div.visible .content_widget ul li").length == 0) {
-				$("div.visible .content_widget").html(noresult);
-                }
-	});
-	*/
 }
 
 /**
@@ -281,38 +220,40 @@ function setFlagDown() {
 
 
 $(document).ready(function() {
-	$("#lupa").keypress(function(event) {
+
+	// configure datepicker
+	// Get current day
+		var d = new Date();
+		var year = d.getFullYear();
+		var month = d.getMonth()+1;
+			month = (month<10 ? '0' : '') + month;
+		var day = d.getDate();
+			day = (day<10 ? '0' : '') + day;
+	$('#sinceDate').datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, maxDate: new Date(d.getFullYear(), d.getMonth(), d.getDate()), });
+
+	$("#searching").keypress(function(event) {
 		if (event.keyCode == 13) {
 			if ($("li.active").length > 0) {
 				activo = $("li.active")[0].children[0].attributes[0].value;
-				$("li.active").removeClass(
-						"active");
+				$("li.active").removeClass("active");
 			}
 
-			/** Solving Issue #5 - @jesusMarevalo - 20140604 - Define param 'since' */
 			if ($("#sinceDate")[0].value != ""){
 				exists_since = "&since=" + $("#sinceDate")[0].value;
-				exists_since_label = ", since " + $("#sinceDate")[0].value;
+				exists_since_label = " since " + $("#sinceDate")[0].value;
 			}else{
 				exists_since = "";
 				exists_since_label = "";
 			}
-			/** Solving Issue #5 - @jesusMarevalo - 20140604 - Define param 'since' */ 
 
 			$(".modulo_widget").removeClass("visible");
-			$("div.visible .content_widget").html(preload);
-			
-			// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
-			//$("#mod_iconEvents").addClass("visible");
-			//$("#mod_iconEvents .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value + exists_since_label);
-			$("#mod_iconEvents").removeClass("visible");	
 			$("#mod_iconSearch").addClass("visible");			
-			$("#mod_iconSearch .tit_widget").html(divVacio + "Result for : " + $("#lupa")[0].value + exists_since_label);
-			// Solving Issue #1
+			$("#mod_iconSearch .tit_widget").html("Result for: " + $("#searching")[0].value + exists_since_label);
+			$("div.visible .content_widget").html(preload);
 
 			$
 				.ajax({
-					url : uri + "?query=" + $("#lupa")[0].value + exists_since,
+					url : uri + "?query=" + $("#searching")[0].value + exists_since,
 					context : document.body,
 					timeout : 8000,
 					error : function(x, t, m) {
@@ -322,8 +263,6 @@ $(document).ready(function() {
 					}
 				})
 				.done(function(data) {
-					// Solving Issue #5 - @jesusMarevalo - 20140604 - Refresh map on each search
-					// Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
 					initialize("map_canvas7","search");
 					$("div.visible .content_widget").html(data);
 					if ($("div.visible .content_widget ul li").length == 0) {
@@ -333,13 +272,6 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#sinceDate').datepicker({dateFormat: 'yy-mm-dd', firstDay: 1});
-	$('#calendar').click(function(){
-		$('#sinceDate').toggle();
-		if($('#sinceDate').css('display') == "none"){
-			$('#sinceDate').val('');
-			$('#calendar').removeClass('active');
-		}
-	});
+	
 
 });
