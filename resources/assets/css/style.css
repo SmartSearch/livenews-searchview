@@ -40,7 +40,7 @@ p {
 .navbar-brand {
     width: 60%;
 }
-@media (min-width: 177px) {
+@media (min-width: 320px) {
 .navbar-brand {
   width: 70%
 }
@@ -168,6 +168,29 @@ p {
     border: 1px solid #999;
     display: none;
 }
+.central_content{
+	height: 100px !important;
+}
+@media (min-width: 320px) {
+.central_content{
+	height: 300px !important;
+}
+}
+@media (min-width: 768px) {
+.central_content{
+	height: 400px !important;
+}
+}
+@media (min-width: 992px) {
+.central_content{
+	height: 450px !important;
+}
+}
+@media (min-width: 1200px) {
+.central_content{
+	height: 500px !important;
+}
+}
 #playerContainer{
     /*width:100%;
     position:relative;*/
@@ -215,6 +238,10 @@ video {
 .content_widget li a.tweet:hover{color:#999;text-decoration:none;}
 
 @media (min-width: 321px) {
+.content_widget li img{width:100%;max-width:35px; padding: 0px; margin: 0px;display:inline; border-radius: 5px;}
+.content_widget li .txt_widget{text-align:left;float:right;width:90%; font-size: 1em;}
+}
+@media (min-width: 992px) {
 .content_widget li img{width:100%;max-width:35px; padding: 0px; margin: 0px;display:inline; border-radius: 5px;}
 .content_widget li .txt_widget{text-align:left;float:right;width:85%; font-size: 1em;}
 }
