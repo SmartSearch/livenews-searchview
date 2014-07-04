@@ -150,9 +150,9 @@ class Api {
                 }
 
                 // Update tweet
-                if (isset($data['results'][$i]['observations']['topTweets'][0]['text'])){
-                    $data['results'][$i]['observations']['topTweets'][0]['text'] = $this->updateTweet($data['results'][$i]['observations']['topTweets'][0]['text']);
-                }
+                //if (isset($data['results'][$i]['observations']['topTweets'][0]['text'])){
+                //    $data['results'][$i]['observations']['topTweets'][0]['text'] = $this->updateTweet($data['results'][$i]['observations']['topTweets'][0]['text']);
+                //}
             }
         }
 	
@@ -167,6 +167,7 @@ class Api {
     /**
     * Update tweet
     */
+    /*
     function updateTweet($tweet){
         $t = explode(" ", $tweet);
         foreach ($t as $word => $value) {
@@ -180,5 +181,6 @@ class Api {
         $tweet = implode(" ", $t);
         return $tweet;
     }
+    */
 
 }
