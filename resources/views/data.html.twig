@@ -6,9 +6,8 @@
 
              <li id="{{ elem.id }}" onclick="setFlagUp(this.id)">
                 {% if elem.firstTrigger in ['totalCheckIns', 'crowd_density', 'traffic_score', 'music_score'] %}
-                    <img  src="{{ app.request.basepath }}/img/crowd.png">
+                    <img  src="{{ app.request.basepath }}/img/white_sensor.png">
                 {% elseif elem.firstTrigger == 'topTweets' %}
-                    {# // Solving Issue #1 - @jesusMarevalo - 20140611 - Update design to twitter #}
                     {%- if elem.profileImageUrl == '' -%}
                         <img  src="{{ app.request.basepath }}/img/twitter.png">
                     {%- else -%}
@@ -22,8 +21,6 @@
                          {%- elseif elem.firstTrigger in ['crowd_density', 'traffic_score', 'music_score'] -%}
                          Sensor
                          {%- elseif elem.firstTrigger == 'topTweets' -%}
-                            {# Twitter #}
-                            {# // Solving Issue #1 - @jesusMarevalo - 20140611 - Update design to twitter #}
                             <a href="https://twitter.com/{{ elem.screenName }}" target="_blank" class="autor_twitter">@{{ elem.screenName }}</a>
                          {%- endif -%}
                          <span class="fecha">{{ fecha|date('d-m-Y H:i') }}</span>
@@ -42,7 +39,24 @@
                          {%- elseif elem.firstTrigger == 'traffic_score' -%}
                          Se observa tráfico alto de vehículos en los alrededores de {{ elem.locationName }}. Traffic score {{ elem.score }}
                          {%- elseif elem.firstTrigger == 'topTweets' -%}
-                         {{ elem.tuitDescription | raw }}  {#{ fecha }#}
+                         
+{#{ elem.tuitDescription | raw }#}
+{% for tuit in elem.tuitDescription|split(' ') %}
+    {% if tuit|length > 1 %}
+        {% if tuit|first|lower == "@" %}
+            <a href="https://twitter.com/{{ tuit|slice(1) }}" class="tweet" target="_blank" title="{{ 'openProfile'|trans }}">{{ tuit }}</a>&nbsp;
+        {% elseif tuit|first|lower == "#" %}
+            <a href="https://twitter.com/hashtag/{{ tuit|slice(1) }}" class="tweet" target="_blank" title="{{ 'openHastag'|trans }}">{{ tuit }}</a>&nbsp;
+        {% elseif tuit|slice(0, 4)|lower == "http" %}
+            <a href="{{ tuit }}" class="tweet" target="_blank" title="{{ 'openUrl'|trans }}">{{ tuit }}</a>&nbsp;
+        {% else %}
+            {{ tuit }}&nbsp;
+        {% endif %}    
+    {% else %}
+        {{ tuit }}&nbsp;
+    {% endif %}
+{% endfor %}
+
                          {%- elseif elem.firstTrigger == 'music_score' -%}
                              {%- if elem.musicScoreObservation <= 0.4 -%}
                                  Audio análisis indica probabilidad de evento musical en  {{ elem.locationName }}. Crowd density {{ elem.score }} Music score {{ elem.musicScoreObservation }}
@@ -54,8 +68,10 @@
                  </div>
              </li>
 
-             {# Localización de los puntos en el mapa #}
              <script>
+               // if (!santanderEstePoint)
+                //    new santanderEstePoint = [];
+
                 santanderEstePoint['{{ elem.id }}'] = new google.maps.Marker({
                       position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
                       title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}',
@@ -65,18 +81,11 @@
                 santanderEstePoint['{{ elem.id }}'].set('id','{{ elem.id }}');
                 google.maps.event.addListener(santanderEstePoint['{{ elem.id }}'], 'click', santanderEsteClick);
               </script>
-             {# Localización de los puntos en el mapa #}
         {% endfor %}
     </ul>
-    <input type="button" id="completeList" onclick="restoreList()" value={{ 'Full_list'|trans }} />   
+    <input type="button" id="completeList" onclick="restoreList()" value="{{ 'back'|trans }}" />   
 
-<script>
-$(document).ready(function() {
-    // Solving Issue #11 - @jesusMarevalo - 20140618 - click on flag and show only the event selected
-    //$("div.visible .content_widget li").click(function(){
-    //    setFlagUp(this.id);
-    //});
-
-});
-</script>
 {% endmacro %}
+
+
+

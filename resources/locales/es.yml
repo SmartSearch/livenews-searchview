@@ -8,3 +8,5 @@ search: buscar
 calendar: agenda
 display: mostrar
 filters: filtros
+back: Volver a la lista
+sinceDate: Fecha desde
