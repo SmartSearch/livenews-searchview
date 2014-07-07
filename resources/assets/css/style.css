@@ -97,6 +97,7 @@ p {
 
 
 #searching {
+    background: url("../../img/lupa.png") no-repeat scroll right center #fff;
     font-size: large;
     width: 100%;
     border: 1px solid;
