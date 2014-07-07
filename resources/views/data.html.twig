@@ -40,11 +40,7 @@
                          Se observa tráfico alto de vehículos en los alrededores de {{ elem.locationName }}. Traffic score {{ elem.score }}
                          {%- elseif elem.firstTrigger == 'topTweets' -%}
                          
-
-                         {#{ elem.tuitDescription | raw }#}
-
-
-
+{#{ elem.tuitDescription | raw }#}
 {% for tuit in elem.tuitDescription|split(' ') %}
     {% if tuit|length > 1 %}
         {% if tuit|first|lower == "@" %}
@@ -60,8 +56,6 @@
         {{ tuit }}&nbsp;
     {% endif %}
 {% endfor %}
-
-
 
                          {%- elseif elem.firstTrigger == 'music_score' -%}
                              {%- if elem.musicScoreObservation <= 0.4 -%}
