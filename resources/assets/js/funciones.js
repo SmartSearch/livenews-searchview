@@ -93,6 +93,8 @@ function santanderEsteClick(event) {
 	// show button to return to complete list
 	$(" div.visible #completeList").show();
 
+	// set as selected
+	setFlagHover (id);
 }
 
 /**
@@ -197,7 +199,7 @@ function setFlagUp(id) {
 	setFlagDown();
 	// update with the new flag selected
 	lastFlagUp = id;
-	// up the new flat selected
+	// up the new flag selected on blue and animated
 	santanderEstePoint[id].setAnimation(google.maps.Animation.BOUNCE);
 	santanderEstePoint[id].setIcon(image);
 	// reset on the map
@@ -216,6 +218,20 @@ function setFlagDown() {
 		// reset on the map
 		santanderEstePoint[lastFlagUp].set(map);
 	}
+}
+
+/**
+*
+*/
+function setFlagHover(id) {
+	// restore the last flag selected
+	setFlagDown();
+	lastFlagUp = id;
+	// up the new flag selected on blue but not aminated
+	santanderEstePoint[id].setAnimation();
+	santanderEstePoint[id].setIcon(image);
+	// reset on the map
+	santanderEstePoint[id].set(map);
 }
 
 
