@@ -93,8 +93,8 @@ function santanderEsteClick(event) {
 	// show button to return to complete list
 	$(" div.visible #completeList").show();
 
-	// set as selected
-	setFlagHover (id);
+	// set the flag as selected
+	setFlagUp (id);
 }
 
 /**
@@ -148,6 +148,9 @@ function santanderOesteClick() {
 
 	// show button to return to complete list
 	$(" div.visible #completeList").show();
+
+	// set the flag as selected
+	setFlagUp (id);
 
 }
 
@@ -204,6 +207,8 @@ function setFlagUp(id) {
 	santanderEstePoint[id].setIcon(image);
 	// reset on the map
 	santanderEstePoint[id].set(map);
+
+	setTimeout(setFlagStatic, 3000); // 3 seconds
 }
 
 /**
@@ -212,7 +217,7 @@ function setFlagUp(id) {
 */
 function setFlagDown() {
 	if (lastFlagUp) {
-		// down the lastFlagUp flat
+		// down the lastFlagUp flag
 		santanderEstePoint[lastFlagUp].setAnimation();
 		santanderEstePoint[lastFlagUp].setIcon();
 		// reset on the map
@@ -221,18 +226,15 @@ function setFlagDown() {
 }
 
 /**
-*
+* Stop animation on the flag
 */
-function setFlagHover(id) {
-	// restore the last flag selected
-	setFlagDown();
-	lastFlagUp = id;
-	// up the new flag selected on blue but not aminated
-	santanderEstePoint[id].setAnimation();
-	santanderEstePoint[id].setIcon(image);
+function setFlagStatic() {
+	// Stop animation
+	santanderEstePoint[lastFlagUp].setAnimation();
 	// reset on the map
-	santanderEstePoint[id].set(map);
+	santanderEstePoint[lastFlagUp].set(map);
 }
+
 
 
 $(document).ready(function() {
@@ -246,6 +248,12 @@ $(document).ready(function() {
 		var day = d.getDate();
 			day = (day<10 ? '0' : '') + day;
 	$('#sinceDate').datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, maxDate: new Date(d.getFullYear(), d.getMonth(), d.getDate()), });
+	
+	// If exists value on #searching and update sinceDate, reload the search
+	$('#sinceDate').change(function(){
+		if ($("#searching").val())
+			$('#searching').trigger({type: 'keypress', which: 13, keyCode: 13});
+	});
 
 	$("#searching").keypress(function(event) {
 		if (event.keyCode == 13) {
