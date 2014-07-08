@@ -97,6 +97,7 @@ p {
 
 
 #searching {
+    background: url("../../img/lupa.png") no-repeat scroll right center #fff;
     font-size: large;
     width: 100%;
     border: 1px solid;
@@ -105,7 +106,7 @@ p {
 }
 @media (min-width: 768px) {
 #searching {
-  border: 0 none;
+  /*border: 0 none;*/
   font-size: x-large;
   width: 125%;
   margin-left: 2%;
@@ -135,7 +136,7 @@ p {
 }
 @media (min-width: 768px) {
 #sinceDate {
-  border: 0 none;
+  /*border: 0 none;*/
   font-size: x-large;
   width: 65%;
   margin-right: 2%;
