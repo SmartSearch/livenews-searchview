@@ -1,10 +1,10 @@
 {
-    "name"        : "SmartSearch/livenews-searchview",
+    "name"        : "smartsearch/livenews-searchview",
     "type"        : "project",
     "description" : "Live news. Search view. An example of an use case of the SMART search engine",
     "keywords"    : ["smart", "smartfp7", "prisadigital", "livenews"],
     "homepage"    : "http://www.smartfp7.eu/",
-    "license"     : "MPL 2.0",
+    "license"     : "MPL-2.0",
     "authors"     : [
         {
             "name"  : "Jorge Tomé Hernando",
