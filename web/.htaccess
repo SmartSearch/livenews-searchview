@@ -9,7 +9,7 @@
     # Also ensure that the Apache web
     # server has the mod_rewrite module
     # enabled
-    #RewriteBase livenews/searchview
+    RewriteBase /livenews/searchview/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [QSA,L]
 </IfModule>
