@@ -14,7 +14,7 @@
 */
 
 var preload = '<div id="preloader" syle="text-align:center;margin:0;"><img src="/img/ajax-loader1.gif"></div>';
-var noresult = '<ul class="jspPane"><li>      <div class="txt_widget"> <p class="autor"> 0 Resultados </p> <p>Esta consulta no genera resultados </p>       </div>    </li></ul>';
+var noresult = '<ul class="panel"><li><div class="txt_widget"> <p class="autor"> 0 Resultados </p> <p>Esta consulta no genera resultados </p></div></li></ul>';
 var activo = "";
 var uri = "index_dev.php/api/v1";
 
@@ -208,7 +208,7 @@ function setFlagUp(id) {
 	// reset on the map
 	santanderEstePoint[id].set(map);
 
-	setTimeout(setFlagStatic, 3000); // 3 seconds
+	setTimeout(setFlagStatic, 2000); // 2 seconds
 }
 
 /**
@@ -238,6 +238,8 @@ function setFlagStatic() {
 
 
 $(document).ready(function() {
+
+	$(".content_widget").jScrollPane();
 
 	// configure datepicker
 	// Get current day
@@ -273,7 +275,7 @@ $(document).ready(function() {
 			$(".modulo_widget").removeClass("visible");
 			$("#mod_iconSearch").addClass("visible");			
 			$("#mod_iconSearch .tit_widget").html("Result for: " + $("#searching")[0].value + exists_since_label);
-			$("div.visible .content_widget").html(preload);
+			$("div.visible .content_widget .jspPane").html(preload);
 
 			$
 				.ajax({
@@ -282,13 +284,13 @@ $(document).ready(function() {
 					timeout : 8000,
 					error : function(x, t, m) {
 						if (t === "timeout") {
-							$("div.visible .content_widget").html(noresult);
+							$("div.visible .content_widget .jspPane").html(noresult);
 						}
 					}
 				})
 				.done(function(data) {
 					initialize("map_canvas7","search");
-					$("div.visible .content_widget").html(data);
+					$("div.visible .content_widget .jspPane").html(data);					
 					if ($("div.visible .content_widget ul li").length == 0) {
 			            $("div.visible .content_widget").html(noresult);
 					}
