@@ -16,7 +16,7 @@
 var preload = '<div id="preloader" syle="text-align:center;margin:0;"><img src="/img/ajax-loader1.gif"></div>';
 var noresult = '<ul class="panel"><li><div class="txt_widget"> <p class="autor"> 0 Resultados </p> <p>Esta consulta no genera resultados </p></div></li></ul>';
 var activo = "";
-var uri = "index_dev.php/api/v1";
+var uri = "api/v1";
 
 var init_search = false;
 var santanderEstePoint = [];
