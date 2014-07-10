@@ -121,13 +121,13 @@ class Latest {
   protected $title;
 
   /**
-  * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+  * 
   * @var string
   */
   protected $profileImageUrl;
 
   /**
-  * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+  * 
   * @var string
   */
   protected $screenName;
@@ -173,8 +173,6 @@ class Latest {
       $this->geohash = $geohash;
       $this->lorder = $lorder;
       $this->triggers = $triggers;
-
-      // Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
       $this->profileImageUrl = $profileImageUrl;
       $this->screenName = $screenName;
   }
@@ -292,7 +290,7 @@ class Latest {
   }
 
   /**
-   * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+   *
    */
   public function getProfileImageUrl() {
       if (isset($this->profileImageUrl))
@@ -302,7 +300,7 @@ class Latest {
   }
 
   /**
-   * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+   *
    */
   public function getScreenName() {
       if (isset($this->screenName))
@@ -445,14 +443,14 @@ class Latest {
   }
 
   /**
-   * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+   *
    */
   public function setProfileImageUrl($profileImageUrl) {
       $this->profileImageUrl = $profileImageUrl;
   }
 
   /**
-   * Solving Issue #1 - @jesusMarevalo - 20140611 - Update twitter design
+   *
    */
   public function setScreenName($screenName) {
       $this->screenName = $screenName;
