@@ -1,5 +1,5 @@
 {% macro elems(content) %}
-    <ul class="jspPane">        
+    <ul class="panel">        
         {% for elem in content %}
 
          {% set fecha=elem.startTime| date('d-m-Y H:i:s') %}
@@ -74,7 +74,7 @@
 
                 santanderEstePoint['{{ elem.id }}'] = new google.maps.Marker({
                       position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
-                      title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}',
+                      title: '{{ elem.locationName }}\n{{ elem.locationAddress }}\n{{ elem.description }}',
                       id: '{{ elem.id }}'
                 });
                 santanderEstePoint['{{ elem.id }}'].setMap(map);
@@ -84,6 +84,13 @@
         {% endfor %}
     </ul>
     <input type="button" id="completeList" onclick="restoreList()" value="{{ 'back'|trans }}" />   
+
+<script>
+    $(document).ready(function() {
+        // refresh scroll bar
+        $(".content_widget").jScrollPane();
+    });
+</script>
 
 {% endmacro %}
 
