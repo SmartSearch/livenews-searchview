@@ -140,11 +140,7 @@ class SMARTSearch {
      */
     public function search($query, $lat=null, $lon=null, $since=null) {
         $data = array();
-        
-	// Solving Issue #5 - @jesusMarevalo - 20140604 - Add param 'since' on search 
-	//$params =  array("q"=>$query, "since"=>"2013-11-01");
         $params =  array("q"=>$query, "since"=>$since);
-	// Solving Issue #5  
         
         if (!is_null($lat) && !is_null($lon)) {
             $params = array_merge($params, array('lat' => $lat, 'lon' => $lon));
@@ -183,7 +179,7 @@ class SMARTSearch {
                             $elem['screenName']
 					);
 				}
-                // // Solving Issue #1 - @jesusMarevalo - 20140611 - Add parameteres profileImageUrl and screenName on array $elem
+
 			}
 		} catch(Exception $e) {
 			$this->logger->error($e->getMessage());

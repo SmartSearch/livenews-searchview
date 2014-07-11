@@ -36,6 +36,11 @@ p {
     margin: 0 0 5px;
 }
 
+.jspVerticalBar { width: 10px; }
+.jspTrack { background: #fff; }
+.jspDrag { background: #ccc; border-radius: 5px; }
+.jspDrag:hover { background: #999; }
+
 /* ===================== #Logo ================================================== */
 .navbar-brand {
     width: 60%;
@@ -226,6 +231,8 @@ video {
     border-bottom: 1px solid #999;
     border-top: 1px solid #999;
 }
+
+.content_widget { height: 460px; overflow: auto; }
 .content_widget li{ overflow:hidden;padding:3px 0 0;border-bottom:1px solid #999}
 .content_widget li .cont_img{float:left;width:20%;text-align:center}
 .content_widget li img{display:none;}
@@ -265,7 +272,9 @@ video {
     float: right;
     text-transform: uppercase;
  }
-
+.jspPane {
+  width: 100%;
+}
 /*********/
 
 

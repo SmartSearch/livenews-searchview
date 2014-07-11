@@ -134,6 +134,13 @@ class Api {
             $data['results'][$i]['profileImageUrl'] = '';
             $data['results'][$i]['screenName'] = '';
 
+            // Update id with the menu option id
+            $option = explode("=", $query);
+            $option = explode("&", $option[1]);
+            $data['results'][$i]['id'] = $option[0].'_'.$data['results'][$i]['id'];
+
+            //echo "<pre>query: ";print_r($query);echo "</pre><br>";
+
             if (isset($data['results'][$i]['observations']['topTweets'])){
                 // Update profile image and user
                 $data['results'][$i]['screenName'] = $data['results'][$i]['observations']['topTweets'][0]['user']['screen_name'];
@@ -147,12 +154,7 @@ class Api {
                         // Update coordinates from Twitter
                         $data['results'][$i]['lat'] = $data['results'][$i]['observations']['topTweets'][0]['geo']['coordinates'][0];
                         $data['results'][$i]['lon'] = $data['results'][$i]['observations']['topTweets'][0]['geo']['coordinates'][1];                        
-                }
-
-                // Update tweet
-                //if (isset($data['results'][$i]['observations']['topTweets'][0]['text'])){
-                //    $data['results'][$i]['observations']['topTweets'][0]['text'] = $this->updateTweet($data['results'][$i]['observations']['topTweets'][0]['text']);
-                //}
+                }                
             }
         }
 	
@@ -162,25 +164,5 @@ class Api {
     		throw new Exception($context.' The search has failed');
     	}
     }
-
     
-    /**
-    * Update tweet
-    */
-    /*
-    function updateTweet($tweet){
-        $t = explode(" ", $tweet);
-        foreach ($t as $word => $value) {
-            if (strstr($value, "#") and $value[0] == "#" and strlen($value) > 1)
-                $t[$word] = '<a href="https://twitter.com/hashtag/'.substr($value,1).'" class="tweet" target="_blank" title="Open hastag">'.$value.'</a>';
-            if (strstr($value, "@") and $value[0] == "@" and strlen($value) > 1)
-                $t[$word] = '<a href="https://twitter.com/'.substr($value,1).'" class="tweet" target="_blank" title="Open profile">'.$value.'</a>';
-            if (strstr($value, "http") and substr($value,0,4) == "http" and strlen($value) > 4)
-                $t[$word] = "<a href='".$value."' class='tweet' target='_blank' title='Open url'>".$value."</a>";
-        }
-        $tweet = implode(" ", $t);
-        return $tweet;
-    }
-    */
-
 }

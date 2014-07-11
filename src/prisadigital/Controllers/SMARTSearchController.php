@@ -34,7 +34,6 @@ class SMARTSearchController {
             'comercio'  => $smart->search('shop'),
             'cultura'   => $smart->search('music'),
             'trafico'   => $smart->search('traffic'),
-            //Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface
             'search'    => $smart->search(''),
         );
        return $app['twig']->render('index.html.twig', $data);
@@ -48,9 +47,7 @@ class SMARTSearchController {
     public function queryAction(Request $request, Application $app) {
         $query  = $request->query->get('query');
         $origen = $request->query->get('origen');
-
-        // Solving Issue #5 - @jesusMarevalo - 20140604 - Add param 'since' on the search 
-	$since = $request->query->get('since');
+    	$since = $request->query->get('since');
         
         if (empty($query) && !empty($origen)) {
             $query = $origen;
@@ -62,8 +59,7 @@ class SMARTSearchController {
         $smart = $app['smart'];
         
         $data = array(
-        	// Solving Issue #5 - @jesusMarevalo - 20140604 - Add param 'since' on the search 
-		'search' => $smart->search($query, $lat, $lon, $since),
+    		'search' => $smart->search($query, $lat, $lon, $since),
         );
        return $app['twig']->render('query.html.twig', $data);
     }
