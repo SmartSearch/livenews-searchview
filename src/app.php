@@ -11,7 +11,8 @@ use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
 use SilexAssetic\AsseticServiceProvider;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
-use prisadigital\Library\SMARTSearchServiceProvider;
+//use prisadigital\Library\SMARTSearchServiceProvider;
+use smartsearch_client\Library\SMARTSearchServiceProvider;
 
 $app->register(new HttpCacheServiceProvider());
 
