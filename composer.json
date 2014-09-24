@@ -31,12 +31,18 @@
         "twig/twig"             : "~1.10",
         "silex/web-profiler"    : "~1.0.1",
         "twitter/bootstrap"     : "2.3.2",
-        "smartsearch/smartsearch_client": "1.0"
+        "smartsearch/smartsearch_client": "dev-master"
     },
     "require-dev": {
         "symfony/browser-kit"   : "~2.3",
         "symfony/css-selector"  : "~2.3",
         "symfony/dom-crawler"   : "~2.3",
         "phpunit/phpunit"       : "3.7.*"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://bitbucket.org/smartsearch/smartsearch-client.git"
+        }
+    ]
 }
