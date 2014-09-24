@@ -1637,6 +1637,37 @@
                 "css"
             ],
             "time": "2013-07-27 06:36:38"
+        },
+        {
+            "name": "smartsearch/smartsearch_client",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/smartsearch/smartsearch-client.git",
+                "reference": "4cca47d253b100e8d6a3f2d519a2dc991eeb3c7a"
+                
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/smartsearch/smartsearch-client/get/4cca47d253b1.zip",
+                "reference": "4cca47d253b100e8d6a3f2d519a2dc991eeb3c7a",
+                "shasum": ""
+            "autoload": {
+                "branch-alias": [
+                    "dev-master": "1.0.x-dev"
+                ]
+            },
+            "autoload": {
+                "psr-0": {
+                    "smartsearch/smartsearch_client": ""
+                }
+            },
+            "type": "library",
+            "license": ["MPL 2.0"],
+            "description": "Live news. Search view. An example of an use case of the SMART search engine",
+            "homepage": "https://bitbucket.org/smartsearch/smartsearch-client",
+            "keywords": ["smart", "smartfp7", "prisadigital", "livenews"],
+            "time": "2014-09-18 11:00:00"
         }
     ],
     "packages-dev": [
