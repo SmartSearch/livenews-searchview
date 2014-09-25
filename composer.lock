@@ -468,12 +468,12 @@
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/smartsearch/smartsearch-client.git",
-                "reference": "c5d23361fbb76f03c252b49c12880ff1d075438d"
+                "reference": "15575b8fe46f5ee7c46e1025467b7daf53c51920"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/smartsearch/smartsearch-client/get/c5d23361fbb76f03c252b49c12880ff1d075438d.zip",
-                "reference": "c5d23361fbb76f03c252b49c12880ff1d075438d",
+                "url": "https://bitbucket.org/smartsearch/smartsearch-client/get/15575b8fe46f5ee7c46e1025467b7daf53c51920.zip",
+                "reference": "15575b8fe46f5ee7c46e1025467b7daf53c51920",
                 "shasum": ""
             },
             "require": {
@@ -487,7 +487,7 @@
             },
             "autoload": {
                 "psr-0": {
-                    "": ""
+                    "smartsearch_client\\": "..\\"
                 }
             },
             "license": [
@@ -511,7 +511,7 @@
                 "smart",
                 "smartfp7"
             ],
-            "time": "2014-09-24 12:49:25"
+            "time": "2014-09-25 10:10:28"
         },
         {
             "name": "symfony/config",
