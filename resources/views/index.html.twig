@@ -97,14 +97,13 @@
         <div class="col-md-4">
             <!-- INIT_WIDGETS -->
             <div id="widgets">
-                {{ fn.modulo(ciudad, 'City of Santander', 'mod_iconCity') }}  
-                {{ fn.modulo(deporte, 'Sports in Santander', 'mod_iconSports') }}  
+                {{ fn.modulo(ciudad,    'City of Santander',    'mod_iconCity') }}  
+                {{ fn.modulo(deporte,   'Sports in Santander',  'mod_iconSports') }}  
                 {{ fn.moduloDataDirect(colores, 'Colors in Santander', 'mod_iconColours') }}   
-                {{ fn.modulo(comercio, 'Shops in Santander', 'mod_iconEvents') }}  
-                {{ fn.modulo(cultura, 'Culture in Santander',  'mod_iconPics') }}  
-                {{ fn.modulo(trafico, 'Traffic in Santander',  'mod_iconVideo')}}
-                {# Solving Issue #1 - @jesusMarevalo - 20140616 - Optimize the search interface #}
-                {{ fn.modulo(search, 'Results',  'mod_iconSearch')}}
+                {{ fn.modulo(comercio,  'Shops in Santander',   'mod_iconEvents') }}  
+                {{ fn.modulo(cultura,   'Culture in Santander', 'mod_iconPics') }}  
+                {{ fn.modulo(trafico,   'Traffic in Santander', 'mod_iconVideo')}}
+                {{ fn.modulo(search,    'Results',  'mod_iconSearch')}}
             </div>
             <!-- END_WIDGETS -->
         </div>
@@ -170,7 +169,7 @@
     {% for elem in content %}
         santanderEstePoint['{{ elem.id }}'] = new google.maps.Marker({
               position: new google.maps.LatLng({{ elem.lat }},{{ elem.lon }}),
-              title: '{{elem.locationName}}\n{{elem.locationAddress}}\n{{elem.description}}',
+              title: '{{ elem.locationName }}\n{{ elem.locationAddress }}\n{{ elem.description }}',
               id: '{{ elem.id }}'
         });
         santanderEstePoint['{{ elem.id }}'].setMap(map);
@@ -215,7 +214,7 @@
 
         
 {% macro elems(content) %}
-    <ul class="jspPane">
+    <ul class="panel">
         {% for elem in content %}
 
          {% set fecha=elem.startTime| date('d-m-Y H:i:s') %}

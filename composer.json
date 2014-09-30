@@ -9,6 +9,10 @@
         {
             "name"  : "Jorge Tomé Hernando",
             "email" : "jtome@prisadigital.com"
+        },
+        {
+            "name"  : "Jesús Mena Arévalo",
+            "email" : "jesus.m.arevalo@gmail.com"
         }
     ],
     "require": {
@@ -26,7 +30,8 @@
         "symfony/yaml"          : "~2.3",
         "twig/twig"             : "~1.10",
         "silex/web-profiler"    : "~1.0.1",
-        "twitter/bootstrap"     : "2.3.2"
+        "twitter/bootstrap"     : "2.3.2",
+        "smartsearch/smartsearch_client": "dev-master"
     },
     "require-dev": {
         "symfony/browser-kit"   : "~2.3",
@@ -34,13 +39,10 @@
         "symfony/dom-crawler"   : "~2.3",
         "phpunit/phpunit"       : "3.7.*"
     },
-    "scripts": {
-        "post-install-cmd": "prisadigital\\Composer\\Script::install",
-        "post-update-cmd": "prisadigital\\Composer\\Script::install"
-    },
-    "autoload": {
-        "psr-0": {
-            "prisadigital": "src/"
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://bitbucket.org/smartsearch/smartsearch-client.git"
         }
-    }
+    ]
 }
