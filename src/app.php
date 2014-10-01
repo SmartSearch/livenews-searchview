@@ -88,7 +88,12 @@ if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {
         })
     );
 
-    $app->register(new SMARTSearchServiceProvider());
+    //$app->register(new SMARTSearchServiceProvider());
+    $app->register(new SMARTSearchServiceProvider(), array(
+       'smart.url' => isset($app['smart.url']) ? $app['smart.url'] : 'http://demos.terrier.org/v1/',
+   ));
+
+
 
 }
 return $app;
