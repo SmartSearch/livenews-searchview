@@ -37,7 +37,8 @@ $app->get('/', function (Request $request) use ($app) {
         'deporte'   => $smart->search('sport'),
         'colores'   => $getFixDataColor,
         'comercio'  => $smart->search('shop'),
-        'cultura'   => $smart->search('music'),
+        //'cultura'   => $smart->search('music'),
+        'cultura'   => $smart->culture(),
         'trafico'   => $smart->search('traffic'),
         'search'    => $smart->search('')
     );
