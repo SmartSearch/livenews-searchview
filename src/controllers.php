@@ -34,11 +34,11 @@ $app->get('/', function (Request $request) use ($app) {
     $data = array(
         'document'  => array('id' => 'city'),
         'ciudad'    => $smart->search('crowd'),
-        'deporte'   => $smart->search('sport'),
+        'deporte'   => $smart->sport(),
         'colores'   => $getFixDataColor,
-        'comercio'  => $smart->search('shop'),
-        'cultura'   => $smart->search('music'),
-        'trafico'   => $smart->search('traffic'),
+        'comercio'  => $smart->commerce(),
+        'cultura'   => $smart->culture(),
+        'trafico'   => $smart->traffic(),
         'search'    => $smart->search('')
     );
    return $app['twig']->render('index.html.twig', $data);
