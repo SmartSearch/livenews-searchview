@@ -42,7 +42,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://bitbucket.org/smartsearch/smartsearch-client.git"
+            "url": "https://github.com/SmartSearch/smartsearch-client.git"
         }
     ]
 }
