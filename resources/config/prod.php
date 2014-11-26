@@ -37,6 +37,9 @@ $app['assetic.input.path_to_js']        = array(
 );
 $app['assetic.output.path_to_js']       = 'js/scripts.js';
 
+
 // SMART Search configuration
 $app['smart.url'] = 'http://demos.terrier.org/v1/';
-// SMART Search configuration - END
+$app['smart.days2Include'] = '20';
+$app['smart.query_news'] = 'santander';
+$app['smart.query_weather'] = 'crowd';
